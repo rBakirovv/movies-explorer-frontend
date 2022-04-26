@@ -1,6 +1,6 @@
-import './NavTab.css';
+import './AboutProject.css';
 
-function NavTab() {
+function AboutProject() {
   return (
     <div className='navtab'>
       <div className='navtab__title-container'>
@@ -30,4 +30,4 @@ function NavTab() {
   );
 }
 
-export default NavTab;
+export default AboutProject;
