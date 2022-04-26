@@ -16,8 +16,8 @@ function AboutMe() {
             Недавно меня заинтерисована веб-разработка и запала в душу. Учась в Яндекс Практикуме, я нашёл свою первую работу.
           </p>
           <ul className='about-me__social-list'>
-            <li className='about-me__social-item'>Telegram</li>
-            <li className='about-me__social-item'>Github</li>
+            <li><a href='https://t.me/rBakirovv' target='_blank' rel='noreferrer' className='about-me__social-item'>Telegram</a></li>
+            <li ><a href='https://github.com/rBakirovv' target='_blank' rel='noreferrer' className='about-me__social-item'>Github</a></li>
           </ul>
         </div>
         <div className='about-me__avatar'></div>
