@@ -1,13 +1,13 @@
-.navtab {
+.about-project {
   padding: 0 70px 0;
 }
 
-.navtab__title-container {
+.about-project__title-container {
   border-bottom: 1px solid #000;
   height: 100%;
 }
 
-.navtab__title {
+.about-project__title {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -17,13 +17,13 @@
   padding: 110px 0 23px;
 }
 
-.navtab__stages {
+.about-project__stages {
   display: flex;
   justify-content: space-around;
   margin-top: 70px;
 }
 
-.navtab__stage-title {
+.about-project__stage-title {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -33,7 +33,7 @@
   max-width: 550px;
 }
 
-.navtab__stage-subtitle {
+.about-project__stage-subtitle {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -42,15 +42,15 @@
   max-width: 550px;
 }
 
-.navtab__line {
+.about-project__line {
   margin: 110px 0 110px;
 }
 
-.navtab__line-container {
+.about-project__line-container {
   display: flex;
 }
 
-.navtab__line-step {
+.about-project__line-step {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -59,7 +59,7 @@
   text-align: center;
 }
 
-.navtab__line-step:first-child {
+.about-project__line-step:first-child {
   padding: 9px 0;
   max-width: 228px;
   width: 100%;
@@ -67,7 +67,7 @@
   background-color: #000;
 }
 
-.navtab__line-step:last-child {
+.about-project__line-step:last-child {
   padding: 9px 0;
   max-width: 912px;
   width: 100%;
@@ -75,11 +75,11 @@
   background-color: #F2F2F2;
 }
 
-.navtab__under-line-container {
+.about-project__under-line-container {
   display: flex;
 }
 
-.navtab__under-line-item {
+.about-project__under-line-item {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
@@ -90,13 +90,13 @@
   margin: 0;
 }
 
-.navtab__under-line-item:first-child {
+.about-project__under-line-item:first-child {
   max-width: 228px;
   width: 100%;
   text-align: center;
 }
 
-.navtab__under-line-item:last-child {
+.about-project__under-line-item:last-child {
   max-width: 912px;
   width: 100%;
   text-align: center;
