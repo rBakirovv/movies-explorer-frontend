@@ -19,6 +19,10 @@
   text-decoration: none;
   color: #000;
   cursor: pointer;
+  margin-top: 20px;
+}
+
+.portfolio__project-container:first-of-type {
   margin-top: 50px;
 }
 
@@ -33,8 +37,42 @@
 }
 
 .portfolio__link {
-  background: center / contain no-repeat url("../../images/portfolio-link.svg");
+  background: center / auto no-repeat url("../../images/portfolio-link.svg");
   width: 29px;
   height: 60px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+  .portfolio {
+    padding: 91px 50px 90px;
+  }
+
+  .portfolio__project-title {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .portfolio {
+    padding: 69px 14px 70px;
+  }
+
+  .portfolio__title {
+    font-size: 14px;
+  }
+  
+  .portfolio__project-container:first-of-type {
+    margin-top: 40px;
+  }
+
+  .portfolio__project-title {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .portfolio__link {
+    width: 18px;
+    height: 28px;
+  }
 }
