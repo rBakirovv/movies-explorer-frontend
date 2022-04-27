@@ -32,6 +32,7 @@
   line-height: 24px;
   letter-spacing: -0.04em;
   max-width: 550px;
+  margin: 0;
 }
 
 .about-project__stage-subtitle {
@@ -41,14 +42,17 @@
   font-size: 14px;
   line-height: 20px;
   max-width: 550px;
+  margin: 0;
 }
 
 .about-project__line {
-  margin: 110px 0 110px;
+  margin: 110px auto 110px;
+  text-align: center;
 }
 
 .about-project__line-container {
   display: flex;
+  justify-content: center;
 }
 
 .about-project__line-step {
@@ -78,6 +82,7 @@
 
 .about-project__under-line-container {
   display: flex;
+  justify-content: center;
 }
 
 .about-project__under-line-item {
@@ -101,4 +106,90 @@
   max-width: 912px;
   width: 100%;
   text-align: center;
+}
+
+@media screen and (max-width: 1000px) {
+  .about-project {
+    padding: 0 50px 0;
+  }
+
+  .about-project__stage-title {
+    max-width: 319px;
+  }
+
+  .about-project__stage-subtitle {
+    max-width: 319px;
+  }
+
+  .about-project__line-step:first-child {
+    max-width: 140px;
+  }
+
+  .about-project__line-step:last-child {
+    max-width: 528px;
+  }
+
+  .about-project__under-line-item:first-child {
+    max-width: 140px;
+  }
+
+  .about-project__under-line-item:last-child {
+    max-width: 528px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+
+  .about-project {
+    padding: 0 18px 0;
+  }
+
+  .about-project__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .about-project__stages {
+    display: flex;
+    flex-direction: column;
+    margin: 60px auto 0;
+    max-width: 284px;
+  }
+
+  .about-project__stage-title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .about-project__stage-container:last-of-type {
+    margin-top: 56px;
+  }
+
+  .about-project__stage-subtitle {
+    font-size: 11px;
+    line-height: 16px;
+    margin-top: 16px;
+  }
+
+  .about-project__line {
+    margin: 60px auto 70px;
+  }
+
+  .about-project__line-step:first-child {
+    padding: 11px 0;
+    max-width: 100px;
+  }
+
+  .about-project__line-step:last-child {
+    padding: 11px 0;
+    max-width: 184px;
+  }
+
+  .about-project__under-line-item:first-child {
+    max-width: 100px;
+  }
+
+  .about-project__under-line-item:last-child {
+    max-width: 184px;
+  }
 }
