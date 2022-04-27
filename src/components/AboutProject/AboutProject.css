@@ -113,6 +113,10 @@
     padding: 0 50px 0;
   }
 
+  .about-project__title {
+    padding-top: 90px;
+  }
+
   .about-project__stage-title {
     max-width: 319px;
   }
@@ -147,6 +151,7 @@
   .about-project__title {
     font-size: 18px;
     line-height: 22px;
+    padding: 70px 0 28px;
   }
 
   .about-project__stages {
