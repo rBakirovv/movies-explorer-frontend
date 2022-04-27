@@ -41,7 +41,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
-  max-width: 550px;
+  max-width: 540px;
   margin: 0;
 }
 
@@ -108,7 +108,7 @@
   text-align: center;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1050px) {
   .about-project {
     padding: 0 50px 0;
   }
