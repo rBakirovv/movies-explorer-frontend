@@ -4,7 +4,7 @@ function Portfolio() {
   return (
     <div className='portfolio'>
       <h2 className='portfolio__title'>Портфолио</h2>
-      <a href='https://rbakirovv.github.io/how-to-learn/' target='_blank' rel='noreferrer' className='portfolio__project-container'>
+      <a href='#' target='_blank' rel='noreferrer' className='portfolio__project-container'>
         <p className='portfolio__project-title'>Статичный сайт</p>
         <div className='portfolio__link'></div>
       </a>
