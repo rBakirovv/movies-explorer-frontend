@@ -9,9 +9,9 @@ function Footer() {
       <div className='footer__main-container'>
         <p className="footer__author">© {new Date().getFullYear()}</p>
         <ul className='footer__link-list'>
-          <li className='footer__link-item'>Яндекс.Практикум</li>
-          <li className='footer__link-item'>Github</li>
-          <li className='footer__link-item'>Facebook</li>
+          <li><a className='footer__link-item' href='https://praktikum.yandex.ru/profile/web/' target='_blank' rel='noreferrer'>Яндекс.Практикум</a></li>
+          <li><a className='footer__link-item' href='https://github.com/rBakirovv' target='_blank' rel='noreferrer'>Github</a></li>
+          <li><a className='footer__link-item' href='https://t.me/rBakirovv' target='_blank' rel='noreferrer'>Telegram</a></li>
         </ul>
       </div>
     </div>
