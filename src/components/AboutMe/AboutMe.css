@@ -88,7 +88,7 @@
   width: 270px;
   height: 327px;
   border-radius: 10px;
-  background-color: gray;
+  background: center / cover no-repeat url(../../images/me.png);
 }
 
 @media screen and (max-width: 1000px) {
@@ -130,7 +130,7 @@
 
 @media screen and (max-width: 750px) {
   .about-me {
-    padding: 0 18px;
+    padding: 0 14px;
   }
 
   .about-me__title {
