@@ -13,6 +13,10 @@ function App() {
           <Main />
           <Footer />
         </Route>
+
+        <Route path='*'>
+
+        </Route>
       </Switch>
     </>
   );

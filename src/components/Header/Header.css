@@ -17,6 +17,11 @@
 .header__auth-item {
   text-decoration: none;
   margin: 0 auto;
+  transition: all 0.4s ease-in-out;
+}
+
+.header__auth-item:hover {
+  opacity: 0.7;
 }
 
 .header__auth-item:first-child {
@@ -40,6 +45,70 @@
   background: #000000;
   border-radius: 3px;
   padding: 8px 20px;
+  cursor: pointer;
+}
+
+.header__logged-in-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1058px;
+  width: 100%;
+  margin-left: 44px;
+}
+
+.header__logged-in-films {
+  display: flex;
+  align-items: center;
+}
+
+.header__logged-in-item {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  text-decoration: none;
+  color: #000000;
+  margin: 0;
+  transition: all 0.4s ease-in-out;
+}
+
+.header__logged-in-item:first-of-type {
+  margin-right: 16px;
+}
+
+.header__logged-in-item_active {
+  font-weight: 500;
+}
+
+.header__logged-in-item:hover {
+  opacity: 0.7;
+}
+
+.header__logged-in-account {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-decoration: none;
+  color: #000000;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  transition: all 0.4s ease-in-out;
+}
+
+.header__logged-in-account:hover {
+  opacity: 0.7;
+}
+
+.header__logged-in-account-icon {
+  width: 30px;
+  height: 30px;
+  background: center / contain no-repeat url(../../images/header-ac.svg);
+  border-radius: 6px;
+  margin-left: 13px;
   cursor: pointer;
 }
 
