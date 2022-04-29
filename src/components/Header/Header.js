@@ -13,8 +13,8 @@ function Header(props) {
       </Link>
       {!loggedIn && (
         <div className='header__auth-buttons'>
-          <Link to='/' className='header__auth-item'>Регистрация</Link>
-          <Link to='/' className='header__auth-item'>Войти</Link>
+          <Link to='/signup' className='header__auth-item'>Регистрация</Link>
+          <Link to='/signin' className='header__auth-item'>Войти</Link>
         </div>
       )}
     </div>
