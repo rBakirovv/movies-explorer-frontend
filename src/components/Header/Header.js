@@ -27,6 +27,7 @@ function Header(props) {
             Аккаунт
             <div className='header__logged-in-account-icon'></div>
           </Link>
+          <button className='header__burger'></button>
         </div>
       )}
     </div>

@@ -6,19 +6,13 @@ import { Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
-    <>
       <Switch>
         <Route path='/'>
           <Header loggedIn={false} />
           <Main />
           <Footer />
         </Route>
-
-        <Route path='*'>
-
-        </Route>
       </Switch>
-    </>
   );
 }
 
