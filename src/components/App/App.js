@@ -3,11 +3,13 @@ import Main from '../Main/Main';
 import { Route, Routes } from 'react-router-dom';
 import NotFound from '../NotFound/NotFound';
 import Profile from '../Profile/Profile';
+import Login from '../Login/Login';
 
 function App() {
   return (
     <Routes>
       <Route path='/' element={<Main />} />
+      <Route path='/signin' element={<Login />} />
       <Route path='/profile' element={<Profile />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
