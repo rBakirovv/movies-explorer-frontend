@@ -21,7 +21,7 @@ function Profile() {
         </div>
         <div className='profile__edit-container'>
           <span className='profile__save-button-span'>При обновлении профиля произошла ошибка.</span>
-          <button className='profile__save-button profile__save-button_disabled' type='button'>Сохранить</button>
+          <button className='profile__save-button profile__save-button_disabled' type='submit'>Сохранить</button>
         </div>
       </section>
     </>
