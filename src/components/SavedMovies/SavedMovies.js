@@ -5,21 +5,20 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 
-function Movies() {
+function SavedMovies() {
   return (
     <>
       <Header loggedIn={true} />
       <SearchForm />
-      <MoviesCardList >
-        <li><MoviesCard isMovies={true} /></li>
-        <li><MoviesCard isMovies={true} /></li>
-        <li><MoviesCard isMovies={true} /></li>
-        <li><MoviesCard isMovies={true} /></li>
-        <li><MoviesCard isMovies={true} /></li>
+      <MoviesCardList>
+        <li><MoviesCard /></li>
+        <li><MoviesCard /></li>
+        <li><MoviesCard /></li>
+        <li><MoviesCard /></li>
       </MoviesCardList>
       <Footer />
     </>
   )
 }
 
-export default Movies;
+export default SavedMovies;

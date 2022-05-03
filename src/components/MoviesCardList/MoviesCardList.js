@@ -1,18 +1,11 @@
 import React from 'react';
-import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
 
-function MoviesCardList() {
+function MoviesCardList({ children }) {
   return (
     <section className='movies-cards-list'>
       <ul className='movies-cards-list__container'>
-        <li><MoviesCard /></li>
-        <li><MoviesCard /></li>
-        <li><MoviesCard /></li>
-        <li><MoviesCard /></li>
-        <li><MoviesCard /></li>
-        <li><MoviesCard /></li>
-        <li><MoviesCard /></li>
+        {children}
       </ul>
       <button className='movies-cards-list__more-button'>Ещё</button>
     </section>

@@ -53,7 +53,12 @@
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.09);
   border-radius: 50px;
   position: relative;
+  transition: all 0.4s ease-in-out;
   cursor: pointer;
+}
+
+.movies-card__like-button:hover {
+  opacity: 0.8;
 }
 
 .movies-card__like-button::after {
@@ -65,6 +70,20 @@
   right: 2px;
   background-color: #F9F9F9;
   position: absolute;
+}
+
+.movies-card__delete-button {
+  width: 16px;
+  height: 16px;
+  border: none;
+  border-radius: 100px;
+  background: center / contain no-repeat url(../../images/movie-delete.svg);
+  transition: all 0.4s ease-in-out;
+  cursor: pointer;
+}
+
+.movies-card__delete-button:hover {
+  opacity: 0.8;
 }
 
 .movies-card__like-button_active::after {

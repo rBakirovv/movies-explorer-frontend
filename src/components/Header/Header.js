@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import Navigation from '../Navigation/Navigation';
 import './Header.css'
 
 function Header(props) {
@@ -18,17 +19,20 @@ function Header(props) {
         </div>
       )}
       {loggedIn && (
-        <div className='header__logged-in-container'>
-          <div className='header__logged-in-films'>
-            <Link to='/movies' className='header__logged-in-item header__logged-in-item_active'>Фильмы</Link>
-            <Link to='/saved-movies' className='header__logged-in-item'>Сохранённые фильмы</Link>
+        <>
+          <div className='header__logged-in-container'>
+            <div className='header__logged-in-films'>
+              <Link to='/movies' className='header__logged-in-item header__logged-in-item_active'>Фильмы</Link>
+              <Link to='/saved-movies' className='header__logged-in-item'>Сохранённые фильмы</Link>
+            </div>
+            <Link to='/profile' className='header__logged-in-account'>
+              Аккаунт
+              <div className='header__logged-in-account-icon'></div>
+            </Link>
+            <button className='header__burger'></button>
           </div>
-          <Link to='/profile' className='header__logged-in-account'>
-            Аккаунт
-            <div className='header__logged-in-account-icon'></div>
-          </Link>
-          <button className='header__burger'></button>
-        </div>
+          <Navigation />
+        </>
       )}
     </div>
   );
