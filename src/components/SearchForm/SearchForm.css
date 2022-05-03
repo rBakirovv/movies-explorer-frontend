@@ -2,7 +2,7 @@
   padding: 70px 70px 48px;
 }
 
-.search__form {
+.search__form-container {
   display: flex;
   border-bottom: 1px solid #E8E8E8;
 }
