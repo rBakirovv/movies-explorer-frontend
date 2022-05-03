@@ -6,7 +6,7 @@ function Login() {
   return (
     <section className='login'>
       <div></div>
-      <Link to='/'>
+      <Link className='login__logo-link' to='/'>
         <div className='login__logo'></div>
       </Link>
       <h2 className='login__title'>Рады видеть!</h2>
@@ -18,9 +18,9 @@ function Login() {
         <label className='login__label' htmlFor='email'>
           Пароль
           <input className='login__input login__input_error' value='1234' type='password' id='password' />
+          <span className='login__error'>Что-то пошло не так...</span>
         </label>
       </form>
-      <span className='login__error'>Что-то пошло не так...</span>
       <div className='login__auth-container'>
         <button type='submit' className='login__submit'>Войти</button>
         <p className='login__submit-subtitle'>Ещё не зарегистрированы? <Link to='/signup' className='login__link'>Регистрация</Link></p>

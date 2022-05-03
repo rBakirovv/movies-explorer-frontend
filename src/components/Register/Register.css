@@ -1,21 +1,21 @@
-.login {
+.register {
   max-width: 396px;
   margin: 70px auto 0;
 }
 
-.login__logo-link {
+.register__logo-link {
   max-width: 38px;
-  display: block;
+  display: flex;
 }
 
-.login__logo {
+.register__logo {
   width: 38px;
   height: 38px;
   background: center / contain no-repeat url(../../images/header-logo.svg);
   cursor: pointer;
 }
 
-.login__title {
+.register__title {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
@@ -24,14 +24,14 @@
   margin: 40px 0 0;
 }
 
-.login__form {
+.register__form {
   display: flex;
   flex-direction: column;
   margin-top: 40px;
   gap: 20px 0;
 }
 
-.login__label {
+.register__label {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -40,7 +40,7 @@
   color: #A0A0A0;
 }
 
-.login__input {
+.register__input {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
@@ -56,11 +56,11 @@
   padding-left: 15px;
 }
 
-.login__input_error {
+.register__input_error {
   color: #FF4062;
 }
 
-.login__error {
+.register__error {
   display: flex;
   font-family: 'Inter';
   font-style: normal;
@@ -68,10 +68,10 @@
   font-size: 10px;
   line-height: 12px;
   color: #FF4062;
-  padding-top: 10px;
+  padding: 10px 0 0;
 }
 
-.login__submit {
+.register__submit {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
@@ -83,16 +83,16 @@
   color: #FFF;
   border: none;
   border-radius: 3px;
-  margin-top: 179px;
+  margin-top: 69px;
   cursor: pointer;
   transition: all 0.4s ease-in-out;
 }
 
-.login__submit:hover {
+.register__submit:hover {
   opacity: 0.8;
 }
 
-.login__submit-subtitle {
+.register__submit-subtitle {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -103,58 +103,62 @@
   margin: 16px auto 0;
 }
 
-.login__link {
+.register__link {
   color: #000000;
   text-decoration: none;
   transition: all 0.4s ease-in-out;
 }
 
-.login__link:hover {
+.register__link:hover {
   opacity: 0.7;
 }
 
 @media screen and (max-width: 1000px) {
-  .login {
+  .register {
     margin-top: 232px;
   }
 }
 
 @media screen and (max-width: 500px) {
-  .login {
+  .register {
     margin-top: 56px;
     max-width: 260px;
   }
 
-  .login__logo-link {
+  .register__logo-link {
     margin: 0 auto 0;
   }
 
-  .login__title {
+  .register__logo {
+    margin: 0 auto 0;
+  }
+
+  .register__title {
     margin: 50px auto 0;
     text-align: center;
   }
 
-  .login__form {
+  .register__form {
     margin: 80px auto 0;
     max-width: 260px;
   }
 
-  .login__input {
+  .register__input {
     width: 260px;
   }
 
-  .login__auth-container {
+  .register__auth-container {
     position: absolute;
     bottom: 30px;
   }
 
-  .login__submit {
+  .register__submit {
     font-size: 12px;
     line-height: 15px;
     width: 260px;
   }
 
-  .login__submit-subtitle {
+  .register__submit-subtitle {
     font-size: 12px;
     line-height: 15px;
     margin-top: 14px;
