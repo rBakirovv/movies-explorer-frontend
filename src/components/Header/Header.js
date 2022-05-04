@@ -8,7 +8,7 @@ function Header(props) {
   const { loggedIn } = props;
 
   return (
-    <div className='header'>
+    <section className='header'>
       <Link to='/'>
         <div className='header__logo'></div>
       </Link>
@@ -34,7 +34,7 @@ function Header(props) {
           <Navigation />
         </>
       )}
-    </div>
+    </section>
   );
 }
 

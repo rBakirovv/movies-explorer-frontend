@@ -3,7 +3,7 @@ import './Footer.css'
 
 function Footer() {
   return (
-    <div className='footer'>
+    <section className='footer'>
       <div className='footer__title-container'>
         <h3 className='footer__title'>Учебный проект Яндекс.Практикум х BeatFilm.</h3>
       </div>
@@ -15,7 +15,7 @@ function Footer() {
           <li><a className='footer__link-item' href='https://t.me/rBakirovv' target='_blank' rel='noopener noreferrer'>Telegram</a></li>
         </ul>
       </div>
-    </div>
+    </section>
   );
 }
 
