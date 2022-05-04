@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Navigation from '../Navigation/Navigation';
 import './Header.css'
 
@@ -22,8 +22,15 @@ function Header(props) {
         <>
           <div className='header__logged-in-container'>
             <div className='header__logged-in-films'>
-              <Link to='/movies' className='header__logged-in-item header__logged-in-item_active'>Фильмы</Link>
-              <Link to='/saved-movies' className='header__logged-in-item'>Сохранённые фильмы</Link>
+              <NavLink
+                to='/movies'
+                className={({ isActive }) => (
+                  isActive ? 'header__logged-in-item header__logged-in-item_active' : 'header__logged-in-item'
+                )}>Фильмы</NavLink>
+              <NavLink
+                to='/saved-movies' className={({ isActive }) => (
+                  isActive ? 'header__logged-in-item header__logged-in-item_active' : 'header__logged-in-item'
+                )}>Сохранённые фильмы</NavLink>
             </div>
             <Link to='/profile' className='header__logged-in-account'>
               Аккаунт

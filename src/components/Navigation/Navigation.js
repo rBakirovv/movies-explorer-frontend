@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Navigation.css'
 
 function Navigation() {
@@ -10,9 +10,19 @@ function Navigation() {
         <button className='navigation__clouse-button'></button>
         <div className='navigation__main-container'>
           <ul className='navigation__links-list'>
-            <li><Link to='/' className='navigation__link'>Главная</Link></li>
-            <li><Link to='/movies' className='navigation__link'>Фильмы</Link></li>
-            <li><Link to='/saved-movies' className='navigation__link navigation__link_active'>Сохранённые фильмы</Link></li>
+            <li><NavLink
+              to='/'
+              className={({ isActive }) => (
+                isActive ? 'navigation__link navigation__link_active' : 'navigation__link'
+              )}>Главная</NavLink></li>
+            <li><NavLink
+              to='/movies' className={({ isActive }) => (
+                isActive ? 'navigation__link navigation__link_active' : 'navigation__link'
+              )}>Фильмы</NavLink></li>
+            <li><NavLink
+              to='/saved-movies' className={({ isActive }) => (
+                isActive ? 'navigation__link navigation__link_active' : 'navigation__link'
+              )}>Сохранённые фильмы</NavLink></li>
           </ul>
           <Link to='/profile' className='navigation__account-link'>
             Аккаунт
