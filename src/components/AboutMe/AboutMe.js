@@ -1,5 +1,6 @@
 import React from 'react';
 import './AboutMe.css';
+import myPhoto from '../../images/me.png'
 
 function AboutMe() {
   return (
@@ -21,7 +22,7 @@ function AboutMe() {
             <li ><a href='https://github.com/rBakirovv' target='_blank' rel='noopener noreferrer' className='about-me__social-item'>Github</a></li>
           </ul>
         </div>
-        <div className='about-me__avatar'></div>
+        <img src={myPhoto} className='about-me__avatar' alt='me' />
       </div>
     </div>
   );

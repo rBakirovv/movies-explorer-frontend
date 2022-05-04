@@ -89,7 +89,7 @@
   width: 270px;
   height: 327px;
   border-radius: 10px;
-  background: center / cover no-repeat url(../../images/me.png);
+  object-fit: cover;
 }
 
 @media screen and (max-width: 1000px) {
