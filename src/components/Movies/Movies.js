@@ -10,7 +10,7 @@ function Movies() {
     <>
       <Header loggedIn={true} />
       <SearchForm />
-      <MoviesCardList >
+      <MoviesCardList isMovies={true} >
         <li><MoviesCard isMovies={true} /></li>
         <li><MoviesCard isMovies={true} /></li>
         <li><MoviesCard isMovies={true} /></li>
