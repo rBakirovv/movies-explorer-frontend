@@ -1,11 +1,11 @@
 import React from 'react';
 import './MoviesCard.css';
-import image from '../../images/photo.png';
+import cardImage from '../../images/photo.png';
 
 function MoviesCard({ isMovies }) {
   return (
     <div className='movies-card'>
-      <img className='movies-card__image' src={image} alt='photo' />
+      <img className='movies-card__image' src={cardImage} alt='movie' />
       <div className='movies-card__main-container'>
         <div className='movies-card__info-container'>
           <h4 className='movies-card__title'>33 слова о дизайне</h4>

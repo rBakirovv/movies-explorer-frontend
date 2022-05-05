@@ -1,3 +1,3 @@
 # movies-explorer-frontend
 
-Можно найти по ссылке __bakirov.movies.nomoredomains.work__
+Можно найти по ссылке __https://bakirov.movies.nomoredomains.work__
