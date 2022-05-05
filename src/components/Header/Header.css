@@ -16,6 +16,11 @@
 }
 
 .header__auth-item {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
   text-decoration: none;
   margin: 0 auto;
   transition: all 0.4s ease-in-out;
@@ -26,22 +31,12 @@
 }
 
 .header__auth-item:first-child {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
   color: #000;
   margin-right: 30px;
   cursor: pointer;
 }
 
 .header__auth-item:last-child {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
   color: #fff;
   background: #000000;
   border-radius: 3px;
@@ -63,7 +58,7 @@
 }
 
 .header__logged-in-item {
-  font-family: 'Inter';
+  font-family: 'Inter', Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
@@ -87,7 +82,7 @@
 }
 
 .header__logged-in-account {
-  font-family: 'Inter';
+  font-family: 'Inter', Arial, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;

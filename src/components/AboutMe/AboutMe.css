@@ -8,7 +8,7 @@
 }
 
 .about-me__title {
-  font-family: 'Inter';
+  font-family: 'Inter', Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 22px;
@@ -30,7 +30,7 @@
 }
 
 .about-me__main-title {
-  font-family: 'Inter';
+  font-family: 'Inter', Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 50px;
@@ -40,7 +40,7 @@
 }
 
 .about-me__main-subtitle {
-  font-family: 'Inter';
+  font-family: 'Inter', Arial, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -49,7 +49,7 @@
 }
 
 .about-me__description {
-  font-family: 'Inter';
+  font-family: 'Inter', Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -69,7 +69,7 @@
 }
 
 .about-me__social-item {
-  font-family: 'Inter';
+  font-family: 'Inter', Arial, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
