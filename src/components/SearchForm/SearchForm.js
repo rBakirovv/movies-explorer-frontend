@@ -10,7 +10,9 @@ function SearchForm() {
           <input
             type='search'
             className='search__input'
-            placeholder='Фильм' />
+            placeholder='Фильм'
+            required
+            formNoValidate />
           <button type='submit' className='search__submit'>Найти</button>
         </div>
         <FilterCheckbox />
