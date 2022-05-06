@@ -13,22 +13,34 @@ function Register() {
       <form className='register__form'>
         <label className='register__label' htmlFor='name'>
           Имя
-          <input className='register__input' value='Руслан' type='name' id='name' />
+          <input
+            className='register__input'
+            type='name'
+            id='name'
+            required
+          />
         </label>
         <label className='register__label' htmlFor='email'>
           E-mail
-          <input className='register__input' value='pochta@yandex.ru' type='email' id='email' />
+          <input
+            className='register__input'
+            type='email'
+            id='email'
+            required />
         </label>
         <label className='register__label' htmlFor='email'>
           Пароль
-          <input className='register__input login__input_error' value='1234' type='password' id='password' />
-          <span className='register__error'>Что-то пошло не так...</span>
+          <input
+            className='register__input'
+            type='password'
+            id='password'
+            required />
         </label>
+        <div className='register__auth-container'>
+          <button type='submit' className='register__submit'>Зарегистрироваться</button>
+          <p className='register__submit-subtitle'>Уже зарегистрированы? <Link to='/signin' className='login__link'>Войти</Link></p>
+        </div>
       </form>
-      <div className='register__auth-container'>
-        <button type='submit' className='register__submit'>Зарегистрироваться</button>
-        <p className='register__submit-subtitle'>Уже зарегистрированы? <Link to='/signin' className='login__link'>Войти</Link></p>
-      </div>
     </section>
   )
 }

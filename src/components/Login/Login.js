@@ -13,18 +13,25 @@ function Login() {
       <form className='login__form'>
         <label className='login__label' htmlFor='email'>
           E-mail
-          <input className='login__input' value='pochta@yandex.ru' type='email' id='email' />
+          <input
+            className='login__input'
+            type='email'
+            id='email'
+            required />
         </label>
         <label className='login__label' htmlFor='email'>
           Пароль
-          <input className='login__input login__input_error' value='1234' type='password' id='password' />
-          <span className='login__error'>Что-то пошло не так...</span>
+          <input
+            className='login__input'
+            type='password'
+            id='password'
+            required />
         </label>
+        <div className='login__auth-container'>
+          <button type='submit' className='login__submit'>Войти</button>
+          <p className='login__submit-subtitle'>Ещё не зарегистрированы? <Link to='/signup' className='login__link'>Регистрация</Link></p>
+        </div>
       </form>
-      <div className='login__auth-container'>
-        <button type='submit' className='login__submit'>Войти</button>
-        <p className='login__submit-subtitle'>Ещё не зарегистрированы? <Link to='/signup' className='login__link'>Регистрация</Link></p>
-      </div>
     </section>
   )
 }
