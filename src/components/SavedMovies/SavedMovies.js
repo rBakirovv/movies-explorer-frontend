@@ -5,16 +5,15 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 
-function SavedMovies() {
+function SavedMovies(props) {
+
+  const { SavedMovies } = props;
   return (
     <>
       <Header loggedIn={true} />
       <SearchForm />
       <MoviesCardList>
-        <li><MoviesCard /></li>
-        <li><MoviesCard /></li>
-        <li><MoviesCard /></li>
-        <li><MoviesCard /></li>
+
       </MoviesCardList>
       <Footer />
     </>

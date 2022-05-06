@@ -59,7 +59,7 @@ class MainApi {
 
   deleteMovie(_id) {
     return fetch(`${this._baseUrl}/movies/${_id}`, {
-      credentials: 'include', 
+      credentials: 'include',
       method: 'DELETE',
       headers: this._headers,
     })
@@ -76,7 +76,8 @@ class MainApi {
 }
 
 const api = new MainApi({
-  baseUrl: 'https://api.bakirov.movies.nomoredomains.work',
+  /*baseUrl: 'https://api.bakirov.movies.nomoredomains.work',*/
+  baseUrl: 'http://localhost:3001',
   headers: {
     'Content-Type': 'application/json'
   }
