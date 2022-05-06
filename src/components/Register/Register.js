@@ -1,10 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Register.css'
 
 /* /^[А-ЯA-ZёәіңғүұқөһӘІҢҒҮҰҚӨҺ\h-]+$/umi */
 
-function Register() {
+function Register(props) {
+
+  const { handleRegistration } = props;
+
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (evt) => {
+    const { name, value } = evt.target;
+    setData({
+      ...data,
+      [name]: value
+    });
+  };
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    handleRegistration(data);
+  };
+
   return (
     <section className='register'>
       <div></div>
@@ -12,13 +34,15 @@ function Register() {
         <div className='register__logo'></div>
       </Link>
       <h2 className='register__title'>Добро пожаловать!</h2>
-      <form className='register__form'>
+      <form className='register__form' onSubmit={handleSubmit}>
         <label className='register__label' htmlFor='name'>
           Имя
           <input
             className='register__input'
             type='name'
             id='name'
+            name='name'
+            onChange={handleChange}
             required
           />
         </label>
@@ -28,6 +52,8 @@ function Register() {
             className='register__input'
             type='email'
             id='email'
+            name='email'
+            onChange={handleChange}
             required />
         </label>
         <label className='register__label' htmlFor='email'>
@@ -36,6 +62,8 @@ function Register() {
             className='register__input'
             type='password'
             id='password'
+            name='password'
+            onChange={handleChange}
             required />
         </label>
         <div className='register__auth-container'>
