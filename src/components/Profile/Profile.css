@@ -57,7 +57,7 @@
 .profile__buttons-container {
   display: flex;
   flex-direction: column;
-  margin-top: 220px;
+  margin-top: 200px;
 }
 
 .profile__account-button {
@@ -86,9 +86,9 @@
 }
 
 .profile__edit-container {
-  display: none;
+  display: flex;
   flex-direction: column;
-  margin-top: 189px;
+  margin-top: 169px;
 }
 
 .profile__save-button-span {
@@ -139,7 +139,7 @@
   }
 
   .profile__buttons-container {
-    margin-top: 210px;
+    margin-top: 190px;
   }
 }
 
@@ -159,13 +159,13 @@
   .profile__buttons-container {
     position: absolute;
     bottom: 60px;
-    margin: 0;
+    width: 260px;
   }
 
   .profile__edit-container {
     position: absolute;
     bottom: 60px;
-    margin: 0;
+    margin: 0 auto 0;
   }
 
   .profile__save-button-span {

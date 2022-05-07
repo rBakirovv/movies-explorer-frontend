@@ -6,13 +6,17 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 function Profile(props) {
 
   const {
-    handleLogOut
+    handleLogOut,
+    handleEditProfile,
   } = props;
 
   const currentUser = React.useContext(CurrentUserContext);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+
+  const [isEditButton, setIsEditButton] = useState(false);
+  const [isReadOnly, setIsReadOnly] = useState(true)
 
   React.useEffect(() => {
     setName(currentUser.name);
@@ -23,14 +27,28 @@ function Profile(props) {
     e.target.name === 'name'
       ? setName(e.target.value)
       : setEmail(e.target.value);
-  }
+  };
+
+  function handleEditClick() {
+    setIsEditButton(true);
+    setIsReadOnly(false);
+  };
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    handleEditProfile({
+      email: email,
+      name: name,
+    });
+    setIsEditButton(false);
+  };
 
   return (
     <>
       <Header loggedIn={true} />
       <section className='profile'>
         <h2 className='profile__title'>Привет, Руслан!</h2>
-        <form className='profile__form'>
+        <form className='profile__form' onSubmit={handleSubmit}>
           <label className='profile__label' htmlFor='name'>Имя</label>
           <input
             className='profile__input'
@@ -38,28 +56,43 @@ function Profile(props) {
             type='text'
             name='name'
             id='name'
+            readOnly={isReadOnly}
             onChange={handleInputChange} />
           <label className='profile__label' htmlFor='email'>E-mail</label>
           <input
             className='profile__input'
             value={email || ' '}
             type='email'
+            name='email'
+            readOnly={isReadOnly}
             id='email'
             onChange={handleInputChange} />
+          {
+            !isEditButton && (
+              <div className='profile__buttons-container'>
+                <button
+                  className='profile__account-button'
+                  type='button'
+                  onClick={handleEditClick}>
+                  Редактировать
+                </button>
+                <button
+                  className='profile__account-button'
+                  type='button'
+                  onClick={handleLogOut}>
+                  Выйти из аккаунта
+                </button>
+              </div>
+            )
+          }
+          {
+            isEditButton && (
+              <div className='profile__edit-container'>
+                <button className='profile__save-button' type='submit'>Сохранить</button>
+              </div>
+            )
+          }
         </form>
-        <div className='profile__buttons-container'>
-          <button className='profile__account-button' type='button'>Редактировать</button>
-          <button
-            className='profile__account-button'
-            type='button'
-            onClick={handleLogOut}>
-            Выйти из аккаунта
-          </button>
-        </div>
-        <div className='profile__edit-container'>
-          <span className='profile__save-button-span'>При обновлении профиля произошла ошибка.</span>
-          <button className='profile__save-button profile__save-button_disabled' type='submit'>Сохранить</button>
-        </div>
       </section>
     </>
   );

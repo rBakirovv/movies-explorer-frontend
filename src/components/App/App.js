@@ -106,6 +106,20 @@ function App() {
       });
   };
 
+  function handleEditProfile(email, name) {
+    api.
+      updateUserInfo(email, name)
+      .then((data) => {
+        setCurrentUser({
+          email: data.email,
+          name: data.name,
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+      });
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Routes>
@@ -147,6 +161,7 @@ function App() {
           element={
             <Profile
               handleLogOut={handleLogOut}
+              handleEditProfile={handleEditProfile}
             />}
         />
         <Route path='*' element={<NotFound />} />
