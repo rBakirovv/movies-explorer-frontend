@@ -10,6 +10,7 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import api from '../../utils/MainApi';
 import auth from '../../utils/Auth';
+import moviesApi from '../../utils/MoviesApi';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
 
+  const [movies, setMovies] = useState([])
   const [savedMovies, setSavedMovies] = useState([]);
 
   const navigate = useNavigate();
@@ -53,8 +55,20 @@ function App() {
   useEffect(() => {
     if (loggedIn) {
       api.getSavedMovies()
-        .then((movies) => {
-          setSavedMovies(movies.reverse());
+        .then((movie) => {
+          setSavedMovies(movie);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+  }, [loggedIn]);
+
+  useEffect(() => {
+    if (loggedIn) {
+      moviesApi.getMovies()
+        .then((movie) => {
+          setMovies(movie);
         })
         .catch((err) => {
           console.log(err);
@@ -114,7 +128,13 @@ function App() {
               handleAuthorization={handleAuthorization}
             />}
         />
-        <Route path='/movies' element={<Movies />} />
+        <Route
+          path='/movies'
+          element={
+            <Movies
+              movies={movies}
+            />}
+        />
         <Route
           path='/saved-movies'
           element={
