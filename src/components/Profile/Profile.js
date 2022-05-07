@@ -8,15 +8,15 @@ function Profile(props) {
   const {
     handleLogOut,
     handleEditProfile,
+    isEditButton,
+    isReadOnly,
+    handleEdiProfileClick,
   } = props;
 
   const currentUser = React.useContext(CurrentUserContext);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-
-  const [isEditButton, setIsEditButton] = useState(false);
-  const [isReadOnly, setIsReadOnly] = useState(true)
 
   React.useEffect(() => {
     setName(currentUser.name);
@@ -29,18 +29,12 @@ function Profile(props) {
       : setEmail(e.target.value);
   };
 
-  function handleEditClick() {
-    setIsEditButton(true);
-    setIsReadOnly(false);
-  };
-
   const handleSubmit = (evt) => {
     evt.preventDefault();
     handleEditProfile({
       email: email,
       name: name,
     });
-    setIsEditButton(false);
   };
 
   return (
@@ -73,7 +67,7 @@ function Profile(props) {
                 <button
                   className='profile__account-button'
                   type='button'
-                  onClick={handleEditClick}>
+                  onClick={handleEdiProfileClick}>
                   Редактировать
                 </button>
                 <button

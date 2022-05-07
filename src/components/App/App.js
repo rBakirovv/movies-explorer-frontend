@@ -21,6 +21,10 @@ function App() {
   const [movies, setMovies] = useState([])
   const [savedMovies, setSavedMovies] = useState([]);
 
+
+  const [isEditButton, setIsEditButton] = useState(false);
+  const [isReadOnly, setIsReadOnly] = useState(true);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -114,15 +118,17 @@ function App() {
           email: data.email,
           name: data.name,
         })
+        setIsEditButton(false)
       })
       .catch((err) => {
         console.log(err)
       });
   }
 
-  const handleTrailerButton = () => {
-    navigate('ya.ru', { replace: true })
-  }
+  function handleEdiProfileClick() {
+    setIsEditButton(true);
+    setIsReadOnly(false);
+  };
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -151,7 +157,6 @@ function App() {
           element={
             <Movies
               movies={movies}
-              handleTrailerButton={handleTrailerButton}
             />}
         />
         <Route
@@ -165,8 +170,11 @@ function App() {
           path='/profile'
           element={
             <Profile
+              isEditButton={isEditButton}
+              isReadOnly={isReadOnly}
               handleLogOut={handleLogOut}
               handleEditProfile={handleEditProfile}
+              handleEdiProfileClick={handleEdiProfileClick}
             />}
         />
         <Route path='*' element={<NotFound />} />
