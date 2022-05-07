@@ -120,6 +120,10 @@ function App() {
       });
   }
 
+  const handleTrailerButton = () => {
+    navigate('ya.ru', { replace: true })
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Routes>
@@ -147,6 +151,7 @@ function App() {
           element={
             <Movies
               movies={movies}
+              handleTrailerButton={handleTrailerButton}
             />}
         />
         <Route

@@ -20,6 +20,7 @@ function Movies({ movies }) {
               cardDuration={movie.duration}
               cardImage={movie.image.formats.thumbnail.url}
               cardImageName={movie.image.name}
+              cardTrailerLink={movie.trailerLink}
               isMovies={true} />
           )
         })}

@@ -7,6 +7,7 @@
 .movies-card__image {
   width: 270px;
   height: 151px;
+  cursor: pointer;
 }
 
 .movies-card__main-container {

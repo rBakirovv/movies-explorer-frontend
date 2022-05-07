@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './MoviesCard.css';
 
 function MoviesCard(props) {
@@ -9,6 +10,7 @@ function MoviesCard(props) {
     cardNameRu,
     cardNameEn,
     cardDuration,
+    cardTrailerLink,
     isMovies,
   } = props;
 
@@ -19,7 +21,12 @@ function MoviesCard(props) {
 
   return (
     <div className='movies-card'>
-      <img className='movies-card__image' src={`${BASE_MOVIES_URL}${cardImage}`} alt={cardImageName} />
+      <a href={cardTrailerLink} target='_blank' rel='noopener noreferrer'>
+        <img
+          className='movies-card__image'
+          src={`${BASE_MOVIES_URL}${cardImage}`}
+          alt={cardImageName} />
+      </a>
       <div className='movies-card__main-container'>
         <div className='movies-card__info-container'>
           <h4 className='movies-card__title'>{cardNameRu || cardNameEn}</h4>
