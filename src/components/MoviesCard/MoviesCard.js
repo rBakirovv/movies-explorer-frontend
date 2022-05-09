@@ -7,7 +7,6 @@ function MoviesCard(props) {
     cardImage,
     cardImageName,
     cardNameRu,
-    cardNameEn,
     cardDuration,
     cardTrailerLink,
     isMovies,
@@ -28,7 +27,7 @@ function MoviesCard(props) {
       </a>
       <div className='movies-card__main-container'>
         <div className='movies-card__info-container'>
-          <h4 className='movies-card__title'>{cardNameRu || cardNameEn}</h4>
+          <h4 className='movies-card__title'>{cardNameRu}</h4>
           <p className='movies-card__subtitle'>{cardHours > 0 && (`${cardHours}ч`)}{cardMinutes > 0 && (`${cardMinutes}м`)}</p>
         </div>
         {isMovies && (

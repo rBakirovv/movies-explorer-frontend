@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CheckBoxContext } from '../../contexts/CurrentUserContext';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
@@ -15,8 +15,8 @@ function Movies(props) {
   const filtredMovies = movies.filter((movie) => {
     return (
       isShortMovie
-        ? (movie.nameRU.toLowerCase() || movie.nameEN.toLowerCase()).includes(searchedMovies.toLowerCase()) && (movie.duration <= 40)
-        : (movie.nameRU.toLowerCase() || movie.nameEN.toLowerCase()).includes(searchedMovies.toLowerCase())
+        ? movie.nameRU.toLowerCase().includes(searchedMovies.toLowerCase()) && (movie.duration <= 40)
+        : movie.nameRU.toLowerCase().includes(searchedMovies.toLowerCase())
     )
   });
 
@@ -33,7 +33,6 @@ function Movies(props) {
             <MoviesCard
               key={movie.id}
               cardNameRu={movie.nameRU}
-              cardNameEn={movie.nameEN}
               cardDuration={movie.duration}
               cardImage={movie.image.formats.thumbnail.url}
               cardImageName={movie.image.name}
