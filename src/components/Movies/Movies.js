@@ -8,7 +8,13 @@ import SearchForm from '../SearchForm/SearchForm';
 
 function Movies(props) {
 
-  const { movies, searchedMovies } = props;
+  const {
+    movies,
+    searchedMovies,
+    currentMovies,
+    loadMoreMovies,
+    moreMovies,
+  } = props;
 
   const { isShortMovie } = React.useContext(CheckBoxContext);
 
@@ -27,8 +33,9 @@ function Movies(props) {
       <MoviesCardList
         isMovies={true}
         filtredMovies={filtredMovies}
+        loadMoreMovies={loadMoreMovies}
         searchedMovies={searchedMovies} >
-        {searchedMovies.length > 0 && (filtredMovies.map((movie) => {
+        {searchedMovies.length > 0 && (filtredMovies.slice(0, currentMovies).map((movie) => {
           return (
             <MoviesCard
               key={movie.id}

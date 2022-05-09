@@ -8,7 +8,11 @@ function FilterCheckbox() {
 
   return (
     <div className='checkbox__container'>
-      <input onClick={() => setIsShortMovie(!isShortMovie)} className='checkbox__button' type='checkbox' />
+      <input
+        className='checkbox__button'
+        type='checkbox'
+        checked={isShortMovie}
+        onChange={() => setIsShortMovie(!isShortMovie)} />
       <label className='checkbox__title'>Короткометражки</label>
     </div>
   )

@@ -22,6 +22,8 @@ function App() {
 
   const [movies, setMovies] = useState([])
   const [savedMovies, setSavedMovies] = useState([]);
+  const [currentMovies, setCurrentMovies] = useState(12);
+  const [moreMovies, setMoreMovies] = useState(4);
   const [searchedMovies, setSearchedMovies] = useState('');
   const [isShortMovie, setIsShortMovie] = useState(false);
 
@@ -134,6 +136,10 @@ function App() {
     setIsReadOnly(false);
   };
 
+  function loadMoreMovies() {
+    setCurrentMovies(currentMovies + moreMovies)
+  };
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <CurrentSearchedFilmContext.Provider value={setSearchedMovies}>
@@ -163,6 +169,8 @@ function App() {
               element={
                 <Movies
                   movies={movies}
+                  currentMovies={currentMovies}
+                  loadMoreMovies={loadMoreMovies}
                   searchedMovies={searchedMovies}
                 />}
             />
