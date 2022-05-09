@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Main from '../Main/Main';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { CurrentSearchedFilmContext } from '../../contexts/CurrentUserContext';
+import { CheckBoxContext } from '../../contexts/CurrentUserContext';
 import NotFound from '../NotFound/NotFound';
 import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
@@ -20,6 +22,8 @@ function App() {
 
   const [movies, setMovies] = useState([])
   const [savedMovies, setSavedMovies] = useState([]);
+  const [searchedMovies, setSearchedMovies] = useState('');
+  const [isShortMovie, setIsShortMovie] = useState(false);
 
 
   const [isEditButton, setIsEditButton] = useState(false);
@@ -132,53 +136,58 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <Routes>
-        <Route
-          path='/'
-          element={
-            <Main loggedIn={loggedIn}
-            />}
-        />
-        <Route path='/signup'
-          element={
-            <Register
-              handleRegistration={handleRegistration}
-            />}
-        />
-        <Route
-          path='/signin'
-          element={
-            <Login
-              handleAuthorization={handleAuthorization}
-            />}
-        />
-        <Route
-          path='/movies'
-          element={
-            <Movies
-              movies={movies}
-            />}
-        />
-        <Route
-          path='/saved-movies'
-          element={
-            <SavedMovies
-              savedMovies={savedMovies}
+      <CurrentSearchedFilmContext.Provider value={setSearchedMovies}>
+        <CheckBoxContext.Provider value={{ isShortMovie, setIsShortMovie }}>
+          <Routes>
+            <Route
+              path='/'
+              element={
+                <Main loggedIn={loggedIn}
+                />}
             />
-          } />
-        <Route
-          path='/profile'
-          element={
-            <Profile
-              isEditButton={isEditButton}
-              isReadOnly={isReadOnly}
-              handleLogOut={handleLogOut}
-              handleEditProfile={handleEditProfile}
-              handleEdiProfileClick={handleEdiProfileClick}
-            />}
-        />
-        <Route path='*' element={<NotFound />} />
-      </Routes>
+            <Route path='/signup'
+              element={
+                <Register
+                  handleRegistration={handleRegistration}
+                />}
+            />
+            <Route
+              path='/signin'
+              element={
+                <Login
+                  handleAuthorization={handleAuthorization}
+                />}
+            />
+            <Route
+              path='/movies'
+              element={
+                <Movies
+                  movies={movies}
+                  searchedMovies={searchedMovies}
+                />}
+            />
+            <Route
+              path='/saved-movies'
+              element={
+                <SavedMovies
+                  savedMovies={savedMovies}
+                />
+              } />
+            <Route
+              path='/profile'
+              element={
+                <Profile
+                  isEditButton={isEditButton}
+                  isReadOnly={isReadOnly}
+                  handleLogOut={handleLogOut}
+                  handleEditProfile={handleEditProfile}
+                  handleEdiProfileClick={handleEdiProfileClick}
+                />}
+            />
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+        </CheckBoxContext.Provider>
+      </CurrentSearchedFilmContext.Provider>
     </CurrentUserContext.Provider>
   );
 }
