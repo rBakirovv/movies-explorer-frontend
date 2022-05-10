@@ -13,7 +13,6 @@ function Movies(props) {
     searchedMovies,
     currentMovies,
     loadMoreMovies,
-    moreMovies,
   } = props;
 
   const { isShortMovie } = React.useContext(CheckBoxContext);

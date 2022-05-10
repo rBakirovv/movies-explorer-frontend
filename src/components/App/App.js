@@ -13,6 +13,7 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import api from '../../utils/MainApi';
 import auth from '../../utils/Auth';
 import moviesApi from '../../utils/MoviesApi';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
 
@@ -164,34 +165,36 @@ function App() {
                   handleAuthorization={handleAuthorization}
                 />}
             />
-            <Route
-              path='/movies'
-              element={
-                <Movies
-                  movies={movies}
-                  currentMovies={currentMovies}
-                  loadMoreMovies={loadMoreMovies}
-                  searchedMovies={searchedMovies}
-                />}
-            />
-            <Route
-              path='/saved-movies'
-              element={
-                <SavedMovies
-                  savedMovies={savedMovies}
-                />
-              } />
-            <Route
-              path='/profile'
-              element={
-                <Profile
-                  isEditButton={isEditButton}
-                  isReadOnly={isReadOnly}
-                  handleLogOut={handleLogOut}
-                  handleEditProfile={handleEditProfile}
-                  handleEdiProfileClick={handleEdiProfileClick}
-                />}
-            />
+            <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
+              <Route
+                path='/movies'
+                element={
+                  <Movies
+                    movies={movies}
+                    currentMovies={currentMovies}
+                    loadMoreMovies={loadMoreMovies}
+                    searchedMovies={searchedMovies}
+                  />}
+              />
+              <Route
+                path='/saved-movies'
+                element={
+                  <SavedMovies
+                    savedMovies={savedMovies}
+                  />
+                } />
+              <Route
+                path='/profile'
+                element={
+                  <Profile
+                    isEditButton={isEditButton}
+                    isReadOnly={isReadOnly}
+                    handleLogOut={handleLogOut}
+                    handleEditProfile={handleEditProfile}
+                    handleEdiProfileClick={handleEdiProfileClick}
+                  />}
+              />
+            </Route>
             <Route path='*' element={<NotFound />} />
           </Routes>
         </CheckBoxContext.Provider>
