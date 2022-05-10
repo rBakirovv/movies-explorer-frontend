@@ -9,6 +9,7 @@ function MoviesCardList(props) {
     filtredMovies,
     searchedMovies,
     loadMoreMovies,
+    currentMovies,
   } = props;
 
   return (
@@ -19,6 +20,7 @@ function MoviesCardList(props) {
       {isMovies
         && filtredMovies.length > 0
         && searchedMovies.length > 0
+        && filtredMovies.length > currentMovies
         && (<button className='movies-cards-list__more-button' onClick={loadMoreMovies}>Ещё</button>)}
     </section>
   )

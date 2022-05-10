@@ -10,9 +10,12 @@ function Movies(props) {
 
   const {
     movies,
+    savedMovies,
     searchedMovies,
     currentMovies,
     loadMoreMovies,
+    handleLikeMovie,
+    handleMovieDelete,
   } = props;
 
   const { isShortMovie } = React.useContext(CheckBoxContext);
@@ -33,16 +36,20 @@ function Movies(props) {
         isMovies={true}
         filtredMovies={filtredMovies}
         loadMoreMovies={loadMoreMovies}
-        searchedMovies={searchedMovies} >
+        searchedMovies={searchedMovies}
+        currentMovies={currentMovies} >
         {searchedMovies.length > 0 && (filtredMovies.slice(0, currentMovies).map((movie) => {
           return (
             <MoviesCard
               key={movie.id}
+              cardId={movie.id}
               cardNameRu={movie.nameRU}
               cardDuration={movie.duration}
-              cardImage={movie.image.formats.thumbnail.url}
-              cardImageName={movie.image.name}
+              cardImage={movie.image.url}
               cardTrailerLink={movie.trailerLink}
+              handleLikeMovie={handleLikeMovie}
+              handleMovieDelete={handleMovieDelete}
+              savedMovies={savedMovies}
               isMovies={true} />
           )
         }))}

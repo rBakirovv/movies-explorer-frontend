@@ -35,23 +35,35 @@ class MainApi {
       .then(this._checkResponse);
   };
 
-  createNewMovie(data) {
+  createNewMovie(
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailerLink,
+    nameRU,
+    nameEN,
+    thumbnail,
+    movieId
+  ) {
     return fetch(`${this._baseUrl}/movies`, {
       credentials: 'include',
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
-        country: data.country,
-        director: data.director,
-        duration: data.duration,
-        year: data.year,
-        description: data.description,
-        image: data.image,
-        trailerLink: data.trailerLink,
-        nameRU: data.nameRU,
-        nameEN: data.nameEN,
-        thumbnail: data.thumbnail,
-        movieId: data.movieId,
+        country: country,
+        director: director,
+        duration: duration,
+        year: year,
+        description: description,
+        image: image,
+        trailerLink: trailerLink,
+        nameRU: nameRU,
+        nameEN: nameEN,
+        thumbnail: thumbnail,
+        movieId: movieId,
       })
     })
       .then(this._checkResponse);

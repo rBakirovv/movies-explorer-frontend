@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Main from '../Main/Main';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { CurrentSearchedFilmContext } from '../../contexts/CurrentUserContext';
 import { CheckBoxContext } from '../../contexts/CurrentUserContext';
@@ -33,6 +33,9 @@ function App() {
   const [isReadOnly, setIsReadOnly] = useState(true);
 
   const navigate = useNavigate();
+  const currentPath = useLocation();
+
+  const BASE_MOVIES_URL = 'https://api.nomoreparties.co/'
 
   useEffect(() => {
     api
@@ -40,12 +43,13 @@ function App() {
       .then((user) => {
         if (user.email) {
           setLoggedIn(true);
+          navigate(currentPath.pathname, { replace: true })
         }
       })
       .catch(() => {
         setLoggedIn(false);
       });
-  }, [navigate]);
+  }, []);
 
   useEffect(() => {
     if (loggedIn) {
@@ -55,6 +59,7 @@ function App() {
           setCurrentUser({
             email: user.email,
             name: user.name,
+            _id: user._id
           })
         })
         .catch((err) => {
@@ -80,6 +85,7 @@ function App() {
       moviesApi.getMovies()
         .then((movie) => {
           setMovies(movie);
+          
         })
         .catch((err) => {
           console.log(err);
@@ -138,8 +144,42 @@ function App() {
   };
 
   function loadMoreMovies() {
-    setCurrentMovies(currentMovies + moreMovies)
+    setCurrentMovies(currentMovies + moreMovies);
   };
+
+  function handleLikeMovie(movie) {
+    api.
+      createNewMovie(
+        movie.country = 'Undefined',
+        movie.director = 'Undefined',
+        movie.duration,
+        movie.year = 'Undefined',
+        movie.description = 'Undefined',
+        movie.url = BASE_MOVIES_URL + movie.url,
+        movie.trailerLink,
+        movie.nameRU,
+        movie.nameEN = 'Undefined',
+        movie.thumbnail = BASE_MOVIES_URL + movie.url,
+        movie.id,
+      )
+      .then((updatedSavedMovies) => {
+        setSavedMovies([updatedSavedMovies, ...savedMovies])
+      })
+      .catch((err) => {
+        console.log(err)
+      });
+  }
+
+  function handleMovieDelete(movie) {
+    api.
+      deleteMovie(movie._id)
+      .then(() => {
+        setSavedMovies(savedMovies.filter((c) => c._id !== movie._id));
+      })
+      .catch(err => {
+        console.log(err)
+      });
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -171,8 +211,12 @@ function App() {
                 element={
                   <Movies
                     movies={movies}
+                    savedMovies={savedMovies}
                     currentMovies={currentMovies}
+                    setCurrentMovies={setCurrentMovies}
                     loadMoreMovies={loadMoreMovies}
+                    handleLikeMovie={handleLikeMovie}
+                    handleMovieDelete={handleMovieDelete}
                     searchedMovies={searchedMovies}
                   />}
               />
@@ -181,6 +225,7 @@ function App() {
                 element={
                   <SavedMovies
                     savedMovies={savedMovies}
+                    handleMovieDelete={handleMovieDelete}
                   />
                 } />
               <Route

@@ -7,13 +7,25 @@ import SearchForm from '../SearchForm/SearchForm';
 
 function SavedMovies(props) {
 
-  const { SavedMovies } = props;
+  const { savedMovies, handleMovieDelete } = props;
+
   return (
     <>
       <Header loggedIn={true} />
       <SearchForm />
       <MoviesCardList>
-
+        {savedMovies.length > 0 && savedMovies.map((movie) => {
+          return (
+            <MoviesCard
+              key={movie._id}
+              cardId={movie._id}
+              cardNameRu={movie.nameRU}
+              cardDuration={movie.duration}
+              cardImage={movie.image}
+              cardTrailerLink={movie.trailerLink}
+              handleMovieDelete={handleMovieDelete} />
+          )
+        })}
       </MoviesCardList>
       <Footer />
     </>
