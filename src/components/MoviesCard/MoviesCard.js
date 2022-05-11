@@ -16,8 +16,35 @@ function MoviesCard(props) {
   } = props;
 
   const [isLiked, setIsLiked] = useState(false);
+  const [savedMovieId, setSavedMovieId] = useState('');
 
-  function saveMovie() {
+  const cardHours = (parseInt(cardDuration / 60));
+  const cardMinutes = cardDuration % 60;
+
+  const BASE_MOVIES_URL = 'https://api.nomoreparties.co/';
+
+  isMovies && (
+    useEffect(() => {
+      savedMovies.map((movie) => {
+        if (movie.movieId == cardId) {
+          setSavedMovieId(movie._id)
+        }
+      })
+    }, [savedMovies])
+  )
+
+  isMovies && (
+    useEffect(() => {
+      const savedMoviesMovieId = savedMovies.map((movie) => {
+        return movie.movieId
+      })
+      if (savedMoviesMovieId.includes(cardId)) {
+        setIsLiked(true)
+      }
+    }, [savedMovies])
+  )
+
+  function likeMovie() {
     handleLikeMovie(
       {
         duration: cardDuration,
@@ -37,21 +64,14 @@ function MoviesCard(props) {
     )
   }
 
-
-  isMovies && (
-    useEffect(() => {
-      const savedMoviesId = savedMovies.map((movie) => { return movie.movieId })
-      if (savedMoviesId.includes(cardId)) {
-        setIsLiked(true)
+  function dislikeMovie() {
+    handleMovieDelete(
+      {
+        _id: savedMovieId,
       }
-    }, [savedMovies])
-  )
-
-
-  const BASE_MOVIES_URL = 'https://api.nomoreparties.co/'
-
-  const cardHours = (parseInt(cardDuration / 60));
-  const cardMinutes = cardDuration % 60;
+    )
+    setIsLiked(false)
+  }
 
   return (
     <div className='movies-card'>
@@ -77,7 +97,7 @@ function MoviesCard(props) {
         {isMovies && (
           <button
             className={`movies-card__like-button ${isLiked && 'movies-card__like-button_active'}`}
-            onClick={isLiked ? deleteMovie : saveMovie}></button>
+            onClick={isLiked ? dislikeMovie : likeMovie}></button>
         )}
         {!isMovies && (
           <button className='movies-card__delete-button' onClick={deleteMovie}></button>

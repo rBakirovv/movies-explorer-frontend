@@ -4,17 +4,33 @@ import Header from '../Header/Header';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
+import { CheckBoxContext } from '../../contexts/CurrentUserContext';
 
 function SavedMovies(props) {
 
-  const { savedMovies, handleMovieDelete } = props;
+  const {
+    savedMovies,
+    searchedMovies,
+    serachMovies,
+    handleMovieDelete,
+  } = props;
+
+  const { isShortMovie } = React.useContext(CheckBoxContext);
+
+  const filtredMovies = savedMovies.filter((movie) => {
+    return (
+      isShortMovie
+        ? movie.nameRU.toLowerCase().includes(searchedMovies.toLowerCase()) && (movie.duration <= 40)
+        : movie.nameRU.toLowerCase().includes(searchedMovies.toLowerCase())
+    )
+  });
 
   return (
     <>
       <Header loggedIn={true} />
-      <SearchForm />
+      <SearchForm serachMovies={serachMovies} />
       <MoviesCardList>
-        {savedMovies.length > 0 && savedMovies.map((movie) => {
+        {filtredMovies.map((movie) => {
           return (
             <MoviesCard
               key={movie._id}

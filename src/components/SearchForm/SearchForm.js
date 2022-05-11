@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { CurrentSearchedFilmContext } from '../../contexts/CurrentUserContext';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import './SearchForm.css';
 
-function SearchForm() {
-
-  const setSearchedMovies = React.useContext(CurrentSearchedFilmContext);
+function SearchForm({ serachMovies }) {
 
   const [movie, setMovie] = useState('');
 
@@ -15,7 +12,7 @@ function SearchForm() {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    setSearchedMovies(movie);
+    serachMovies(movie)
   };
 
   return (

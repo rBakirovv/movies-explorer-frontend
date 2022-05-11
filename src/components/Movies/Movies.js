@@ -16,6 +16,7 @@ function Movies(props) {
     loadMoreMovies,
     handleLikeMovie,
     handleMovieDelete,
+    serachMovies,
   } = props;
 
   const { isShortMovie } = React.useContext(CheckBoxContext);
@@ -31,7 +32,7 @@ function Movies(props) {
   return (
     <>
       <Header loggedIn={true} />
-      <SearchForm />
+      <SearchForm serachMovies={serachMovies} />
       <MoviesCardList
         isMovies={true}
         filtredMovies={filtredMovies}

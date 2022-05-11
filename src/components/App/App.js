@@ -23,13 +23,17 @@ function App() {
 
   const [movies, setMovies] = useState([])
   const [savedMovies, setSavedMovies] = useState([]);
+
   const [currentMovies, setCurrentMovies] = useState(12);
   const [moreMovies, setMoreMovies] = useState(4);
+
   const [searchedMovies, setSearchedMovies] = useState('');
+  const [searchedSavedMovies, setSearchedSavedMovies] = useState('');
   const [isShortMovie, setIsShortMovie] = useState(false);
 
 
   const [isEditButton, setIsEditButton] = useState(false);
+
   const [isReadOnly, setIsReadOnly] = useState(true);
 
   const navigate = useNavigate();
@@ -85,7 +89,7 @@ function App() {
       moviesApi.getMovies()
         .then((movie) => {
           setMovies(movie);
-          
+
         })
         .catch((err) => {
           console.log(err);
@@ -143,6 +147,13 @@ function App() {
     setIsReadOnly(false);
   };
 
+  function serachMovies(data) {
+    currentPath.pathname == '/movies'
+      ? setSearchedMovies(data)
+      : setSearchedSavedMovies(data)
+    setCurrentMovies(12);
+  }
+
   function loadMoreMovies() {
     setCurrentMovies(currentMovies + moreMovies);
   };
@@ -183,67 +194,68 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <CurrentSearchedFilmContext.Provider value={setSearchedMovies}>
-        <CheckBoxContext.Provider value={{ isShortMovie, setIsShortMovie }}>
-          <Routes>
+      <CheckBoxContext.Provider value={{ isShortMovie, setIsShortMovie }}>
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <Main loggedIn={loggedIn}
+              />}
+          />
+          <Route path='/signup'
+            element={
+              <Register
+                handleRegistration={handleRegistration}
+              />}
+          />
+          <Route
+            path='/signin'
+            element={
+              <Login
+                handleAuthorization={handleAuthorization}
+              />}
+          />
+          <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
             <Route
-              path='/'
+              path='/movies'
               element={
-                <Main loggedIn={loggedIn}
-                />}
-            />
-            <Route path='/signup'
-              element={
-                <Register
-                  handleRegistration={handleRegistration}
+                <Movies
+                  movies={movies}
+                  savedMovies={savedMovies}
+                  searchedMovies={searchedMovies}
+                  currentMovies={currentMovies}
+                  setCurrentMovies={setCurrentMovies}
+                  loadMoreMovies={loadMoreMovies}
+                  handleLikeMovie={handleLikeMovie}
+                  handleMovieDelete={handleMovieDelete}
+                  serachMovies={serachMovies}
                 />}
             />
             <Route
-              path='/signin'
+              path='/saved-movies'
               element={
-                <Login
-                  handleAuthorization={handleAuthorization}
+                <SavedMovies
+                  savedMovies={savedMovies}
+                  searchedMovies={searchedSavedMovies}
+                  serachMovies={serachMovies}
+                  handleMovieDelete={handleMovieDelete}
+                />
+              } />
+            <Route
+              path='/profile'
+              element={
+                <Profile
+                  isEditButton={isEditButton}
+                  isReadOnly={isReadOnly}
+                  handleLogOut={handleLogOut}
+                  handleEditProfile={handleEditProfile}
+                  handleEdiProfileClick={handleEdiProfileClick}
                 />}
             />
-            <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
-              <Route
-                path='/movies'
-                element={
-                  <Movies
-                    movies={movies}
-                    savedMovies={savedMovies}
-                    currentMovies={currentMovies}
-                    setCurrentMovies={setCurrentMovies}
-                    loadMoreMovies={loadMoreMovies}
-                    handleLikeMovie={handleLikeMovie}
-                    handleMovieDelete={handleMovieDelete}
-                    searchedMovies={searchedMovies}
-                  />}
-              />
-              <Route
-                path='/saved-movies'
-                element={
-                  <SavedMovies
-                    savedMovies={savedMovies}
-                    handleMovieDelete={handleMovieDelete}
-                  />
-                } />
-              <Route
-                path='/profile'
-                element={
-                  <Profile
-                    isEditButton={isEditButton}
-                    isReadOnly={isReadOnly}
-                    handleLogOut={handleLogOut}
-                    handleEditProfile={handleEditProfile}
-                    handleEdiProfileClick={handleEdiProfileClick}
-                  />}
-              />
-            </Route>
-            <Route path='*' element={<NotFound />} />
-          </Routes>
-        </CheckBoxContext.Provider>
-      </CurrentSearchedFilmContext.Provider>
+          </Route>
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </CheckBoxContext.Provider>
     </CurrentUserContext.Provider>
   );
 }
