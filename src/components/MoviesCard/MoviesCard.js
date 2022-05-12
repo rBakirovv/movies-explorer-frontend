@@ -26,7 +26,7 @@ function MoviesCard(props) {
   isMovies && (
     useEffect(() => {
       savedMovies.map((movie) => {
-        if (movie.movieId == cardId) {
+        if (movie.movieId === cardId) {
           setSavedMovieId(movie._id)
         }
       })

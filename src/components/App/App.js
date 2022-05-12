@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Main from '../Main/Main';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { CurrentSearchedFilmContext } from '../../contexts/CurrentUserContext';
 import { CheckBoxContext } from '../../contexts/CurrentUserContext';
 import NotFound from '../NotFound/NotFound';
 import Profile from '../Profile/Profile';
@@ -31,19 +30,20 @@ function App() {
   const [searchedSavedMovies, setSearchedSavedMovies] = useState('');
   const [isShortMovie, setIsShortMovie] = useState(false);
 
+  const [isLoading, setIsLoading] = useState(true);
 
   const [isEditButton, setIsEditButton] = useState(false);
 
   const [isReadOnly, setIsReadOnly] = useState(true);
 
   const navigate = useNavigate();
+
   const currentPath = useLocation();
 
   const BASE_MOVIES_URL = 'https://api.nomoreparties.co/'
 
   useEffect(() => {
-    api
-      .getUserInfo()
+    api.getUserInfo()
       .then((user) => {
         if (user.email) {
           setLoggedIn(true);
@@ -57,8 +57,7 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
-      api
-        .getUserInfo()
+      api.getUserInfo()
         .then((user) => {
           setCurrentUser({
             email: user.email,
@@ -77,6 +76,7 @@ function App() {
       api.getSavedMovies()
         .then((movie) => {
           setSavedMovies(movie);
+          setIsLoading(false)
         })
         .catch((err) => {
           console.log(err);
@@ -128,8 +128,7 @@ function App() {
   };
 
   function handleEditProfile(email, name) {
-    api.
-      updateUserInfo(email, name)
+    api.updateUserInfo(email, name)
       .then((data) => {
         setCurrentUser({
           email: data.email,
@@ -148,7 +147,7 @@ function App() {
   };
 
   function serachMovies(data) {
-    currentPath.pathname == '/movies'
+    currentPath.pathname === '/movies'
       ? setSearchedMovies(data)
       : setSearchedSavedMovies(data)
     setCurrentMovies(12);
@@ -159,20 +158,19 @@ function App() {
   };
 
   function handleLikeMovie(movie) {
-    api.
-      createNewMovie(
-        movie.country = 'Undefined',
-        movie.director = 'Undefined',
-        movie.duration,
-        movie.year = 'Undefined',
-        movie.description = 'Undefined',
-        movie.url = BASE_MOVIES_URL + movie.url,
-        movie.trailerLink,
-        movie.nameRU,
-        movie.nameEN = 'Undefined',
-        movie.thumbnail = BASE_MOVIES_URL + movie.url,
-        movie.id,
-      )
+    api.createNewMovie(
+      movie.country = 'Undefined',
+      movie.director = 'Undefined',
+      movie.duration,
+      movie.year = 'Undefined',
+      movie.description = 'Undefined',
+      movie.url = BASE_MOVIES_URL + movie.url,
+      movie.trailerLink,
+      movie.nameRU,
+      movie.nameEN = 'Undefined',
+      movie.thumbnail = BASE_MOVIES_URL + movie.url,
+      movie.id,
+    )
       .then((updatedSavedMovies) => {
         setSavedMovies([updatedSavedMovies, ...savedMovies])
       })
@@ -182,8 +180,7 @@ function App() {
   }
 
   function handleMovieDelete(movie) {
-    api.
-      deleteMovie(movie._id)
+    api.deleteMovie(movie._id)
       .then(() => {
         setSavedMovies(savedMovies.filter((c) => c._id !== movie._id));
       })
@@ -224,6 +221,7 @@ function App() {
                   savedMovies={savedMovies}
                   searchedMovies={searchedMovies}
                   currentMovies={currentMovies}
+                  isLoading={isLoading}
                   setCurrentMovies={setCurrentMovies}
                   loadMoreMovies={loadMoreMovies}
                   handleLikeMovie={handleLikeMovie}
@@ -237,6 +235,7 @@ function App() {
                 <SavedMovies
                   savedMovies={savedMovies}
                   searchedMovies={searchedSavedMovies}
+                  isLoading={isLoading}
                   serachMovies={serachMovies}
                   handleMovieDelete={handleMovieDelete}
                 />

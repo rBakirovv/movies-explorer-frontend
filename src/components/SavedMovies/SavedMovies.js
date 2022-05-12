@@ -6,12 +6,14 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import { CheckBoxContext } from '../../contexts/CurrentUserContext';
 import NotMatch from '../NotMatch/NotMatch';
+import Preloader from '../Preloader/Preloader';
 
 function SavedMovies(props) {
 
   const {
     savedMovies,
     searchedMovies,
+    isLoading,
     serachMovies,
     handleMovieDelete,
   } = props;
@@ -31,10 +33,11 @@ function SavedMovies(props) {
       <Header loggedIn={true} />
       <SearchForm serachMovies={serachMovies} />
       {
-        searchedMovies.length > 0 && filtredMovies.length == 0 && (
+        searchedMovies.length > 0 && filtredMovies.length === 0 && (
           <NotMatch />
         )
       }
+      <Preloader isLoading={isLoading} />
       <MoviesCardList>
         {filtredMovies.map((movie) => {
           return (

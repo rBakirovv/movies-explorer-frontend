@@ -6,6 +6,7 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import NotMatch from '../NotMatch/NotMatch';
 import SearchForm from '../SearchForm/SearchForm';
+import Preloader from '../Preloader/Preloader';
 
 function Movies(props) {
 
@@ -14,6 +15,7 @@ function Movies(props) {
     savedMovies,
     searchedMovies,
     currentMovies,
+    isLoading,
     loadMoreMovies,
     handleLikeMovie,
     handleMovieDelete,
@@ -35,10 +37,11 @@ function Movies(props) {
       <Header loggedIn={true} />
       <SearchForm serachMovies={serachMovies} />
       {
-        searchedMovies.length > 0 && filtredMovies.length == 0 && (
+        searchedMovies.length > 0 && filtredMovies.length === 0 && (
           <NotMatch />
         )
       }
+      <Preloader isLoading={isLoading} />
       <MoviesCardList
         isMovies={true}
         filtredMovies={filtredMovies}

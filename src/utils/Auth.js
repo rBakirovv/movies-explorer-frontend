@@ -45,7 +45,7 @@ class Auth {
       return res.json();
     } else {
       return Promise.reject(res.status);
-    };
+    }
   };
 }
 
