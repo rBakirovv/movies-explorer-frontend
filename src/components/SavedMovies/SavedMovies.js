@@ -5,6 +5,7 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import { CheckBoxContext } from '../../contexts/CurrentUserContext';
+import NotMatch from '../NotMatch/NotMatch';
 
 function SavedMovies(props) {
 
@@ -29,6 +30,11 @@ function SavedMovies(props) {
     <>
       <Header loggedIn={true} />
       <SearchForm serachMovies={serachMovies} />
+      {
+        searchedMovies.length > 0 && filtredMovies.length == 0 && (
+          <NotMatch />
+        )
+      }
       <MoviesCardList>
         {filtredMovies.map((movie) => {
           return (

@@ -4,6 +4,7 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import NotMatch from '../NotMatch/NotMatch';
 import SearchForm from '../SearchForm/SearchForm';
 
 function Movies(props) {
@@ -33,6 +34,11 @@ function Movies(props) {
     <>
       <Header loggedIn={true} />
       <SearchForm serachMovies={serachMovies} />
+      {
+        searchedMovies.length > 0 && filtredMovies.length == 0 && (
+          <NotMatch />
+        )
+      }
       <MoviesCardList
         isMovies={true}
         filtredMovies={filtredMovies}
