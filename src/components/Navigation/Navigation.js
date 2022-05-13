@@ -2,12 +2,14 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './Navigation.css'
 
-function Navigation() {
+function Navigation(props) {
+
+  const { isBurgerOpen, setIsBurgerOpen } = props;
 
   return (
-    <section className={`navigation`}>
+    <section className={`navigation ${isBurgerOpen && 'navigation_active'}`}>
       <div className='navigation__container'>
-        <button className='navigation__clouse-button'></button>
+        <button className='navigation__clouse-button' onClick={() => setIsBurgerOpen(false)}></button>
         <div className='navigation__main-container'>
           <ul className='navigation__links-list'>
             <li><NavLink

@@ -1,14 +1,21 @@
 .navigation {
-  display: none;
+  display: flex;
   position: fixed;
-  z-index: 2;
+  z-index: 999;
   justify-content: flex-end;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  transition: visibility 0.4s, opacity 0.4s linear;
+  transition: visibility 0.2s, opacity 0.25s linear;
+  visibility: hidden;
+  opacity:  0;
+}
+
+.navigation_active {
+  visibility: visible;
+  opacity: 1;
 }
 
 .navigation__container {

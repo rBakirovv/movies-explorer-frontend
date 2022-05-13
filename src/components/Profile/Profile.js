@@ -41,7 +41,7 @@ function Profile(props) {
     <>
       <Header loggedIn={true} />
       <section className='profile'>
-        <h2 className='profile__title'>Привет, Руслан!</h2>
+        <h2 className='profile__title'>Привет, {name}!</h2>
         <form className='profile__form' onSubmit={handleSubmit}>
           <label className='profile__label' htmlFor='name'>Имя</label>
           <input

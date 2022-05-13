@@ -20,11 +20,13 @@ function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
 
+  const [isMobile, setIsMobile] = useState(false);
+
   const [movies, setMovies] = useState([])
   const [savedMovies, setSavedMovies] = useState([]);
 
-  const [currentMovies, setCurrentMovies] = useState(12);
-  const [moreMovies, setMoreMovies] = useState(4);
+  const [currentMovies, setCurrentMovies] = useState(DESCTOP_CURRENT);
+  const [moreMovies, setMoreMovies] = useState(DESCTOP_LOAD_MORE);
 
   const [searchedMovies, setSearchedMovies] = useState('');
   const [searchedSavedMovies, setSearchedSavedMovies] = useState('');
@@ -40,7 +42,20 @@ function App() {
 
   const currentPath = useLocation();
 
-  const BASE_MOVIES_URL = 'https://api.nomoreparties.co/'
+  const BASE_MOVIES_URL = 'https://api.nomoreparties.co/';
+
+
+  const DESCTOP_CURRENT = 16;
+  const DESCTOP_LOAD_MORE = 4;
+
+  const LAPTOP_CURRENT = 12;
+  const LAPTOP_LOAD_MORE = 3;
+
+  const TABLET_CURRENT = 8;
+  const TABLET_LOAD_MORE = 2;
+
+  const MOBILE_CURRENT = 5;
+  const MOBILE_LOAD_MORE = 1;
 
   useEffect(() => {
     api.getUserInfo()
@@ -188,6 +203,22 @@ function App() {
         console.log(err)
       });
   }
+
+  const resizeHandler = () => {
+    if (window.innerWidth < 1000) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", resizeHandler);
+    resizeHandler();
+    return () => {
+      window.removeEventListener("resize", resizeHandler);
+    };
+  });
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
