@@ -2,6 +2,22 @@
   padding: 70px 70px 80px;
 }
 
+.movies-cards-list__error-api {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 31px;
+  line-height: 39px;
+  text-align: center;
+  letter-spacing: -0.04em;
+  margin: 0 auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FF4062;
+  max-width: 300px;
+}
+
 .movies-cards-list__container {
   display: grid;
   list-style-type: none;

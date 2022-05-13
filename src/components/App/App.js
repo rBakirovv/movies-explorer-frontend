@@ -20,7 +20,7 @@ function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
 
-  const [movies, setMovies] = useState([])
+  const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
 
   const [currentMovies, setCurrentMovies] = useState(0);
@@ -32,6 +32,8 @@ function App() {
   const [isShortMovie, setIsShortMovie] = useState(false);
 
   const [isLoading, setIsLoading] = useState(true);
+
+  const [isApiError, setIsApiError] = useState(false);
 
   const [isEditButton, setIsEditButton] = useState(false);
 
@@ -105,6 +107,7 @@ function App() {
         })
         .catch((err) => {
           console.log(err);
+          setIsApiError(true);
         })
     }
   }, [loggedIn]);
@@ -112,7 +115,7 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       window.addEventListener("resize", resizeHandler);
-      resizeHandler()
+      resizeHandler();
     }, 500)
     return () => {
       window.removeEventListener("resize", resizeHandler);
@@ -180,7 +183,7 @@ function App() {
       .catch((err) => {
         console.log(err)
       });
-  }
+  };
 
   function handleEdiProfileClick() {
     setIsEditButton(true);
@@ -192,7 +195,7 @@ function App() {
       ? setSearchedMovies(data)
       : setSearchedSavedMovies(data)
     setCurrentMovies(defaultMovies);
-  }
+  };
 
   function loadMoreMovies() {
     setCurrentMovies(currentMovies + moreMovies);
@@ -218,7 +221,7 @@ function App() {
       .catch((err) => {
         console.log(err)
       });
-  }
+  };
 
   function handleMovieDelete(movie) {
     api.deleteMovie(movie._id)
@@ -228,7 +231,7 @@ function App() {
       .catch(err => {
         console.log(err)
       });
-  }
+  };
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -263,6 +266,7 @@ function App() {
                   searchedMovies={searchedMovies}
                   currentMovies={currentMovies}
                   isLoading={isLoading}
+                  isApiError={isApiError}
                   setCurrentMovies={setCurrentMovies}
                   loadMoreMovies={loadMoreMovies}
                   handleLikeMovie={handleLikeMovie}

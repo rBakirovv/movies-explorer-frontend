@@ -16,6 +16,7 @@ function Movies(props) {
     searchedMovies,
     currentMovies,
     isLoading,
+    isApiError,
     loadMoreMovies,
     handleLikeMovie,
     handleMovieDelete,
@@ -44,6 +45,7 @@ function Movies(props) {
       <Preloader isLoading={isLoading} />
       <MoviesCardList
         isMovies={true}
+        isApiError={isApiError}
         filtredMovies={filtredMovies}
         loadMoreMovies={loadMoreMovies}
         searchedMovies={searchedMovies}

@@ -58,16 +58,18 @@
   margin: 0 0 13px 20px;
 }
 
-.search__submit:hover {
-  opacity: 0.7;
-}
-
 .search__input::placeholder {
   color: #A0A0A0;
 }
 
 .search__input::-ms-clear {
   display: none;
+}
+
+@media(hover: hover) and (pointer: fine) {
+  .search__submit:hover {
+    opacity: 0.7;
+  }
 }
 
 @media screen and (max-width: 1000px) {

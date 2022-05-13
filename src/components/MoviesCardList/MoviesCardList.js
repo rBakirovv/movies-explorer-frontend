@@ -6,6 +6,7 @@ function MoviesCardList(props) {
   const {
     children,
     isMovies,
+    isApiError,
     filtredMovies,
     searchedMovies,
     loadMoreMovies,
@@ -14,6 +15,9 @@ function MoviesCardList(props) {
 
   return (
     <section className='movies-cards-list'>
+      {isApiError && (
+        <span className='movies-cards-list__error-api'>Во время запроса произошла ошибка</span>
+      )}
       <ul className='movies-cards-list__container'>
         {children}
       </ul>
