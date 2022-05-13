@@ -102,7 +102,6 @@ function App() {
       moviesApi.getMovies()
         .then((movie) => {
           setMovies(movie);
-
         })
         .catch((err) => {
           console.log(err);
@@ -111,8 +110,11 @@ function App() {
   }, [loggedIn]);
 
   useEffect(() => {
-    window.addEventListener("resize", resizeHandler);
-    resizeHandler();
+    setTimeout(() => {
+      window.addEventListener("resize", resizeHandler);
+      console.log(window.innerWidth)
+      resizeHandler()
+    }, 500)
     return () => {
       window.removeEventListener("resize", resizeHandler);
     };
@@ -122,12 +124,15 @@ function App() {
     if (window.innerWidth <= 1280 && window.innerWidth > 1000) {
       setMoreMovies(LAPTOP_LOAD_MORE);
       setDefaultMovies(LAPTOP_CURRENT);
+
     } else if (window.innerWidth <= 1000 && window.innerWidth > 767) {
       setMoreMovies(TABLET_LOAD_MORE);
       setDefaultMovies(TABLET_CURRENT);
+
     } else if (window.innerWidth <= 767) {
       setMoreMovies(MOBILE_LOAD_MORE);
       setDefaultMovies(MOBILE_CURRENT);
+
     } else if (window.innerWidth > 1280) {
       setMoreMovies(DESCTOP_LOAD_MORE);
       setDefaultMovies(DESCTOP_CURRENT);
