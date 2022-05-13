@@ -20,13 +20,12 @@ function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
 
-  const [isMobile, setIsMobile] = useState(false);
-
   const [movies, setMovies] = useState([])
   const [savedMovies, setSavedMovies] = useState([]);
 
-  const [currentMovies, setCurrentMovies] = useState(DESCTOP_CURRENT);
-  const [moreMovies, setMoreMovies] = useState(DESCTOP_LOAD_MORE);
+  const [currentMovies, setCurrentMovies] = useState(0);
+  const [defaultMovies, setDefaultMovies] = useState(0);
+  const [moreMovies, setMoreMovies] = useState(4);
 
   const [searchedMovies, setSearchedMovies] = useState('');
   const [searchedSavedMovies, setSearchedSavedMovies] = useState('');
@@ -44,7 +43,6 @@ function App() {
 
   const BASE_MOVIES_URL = 'https://api.nomoreparties.co/';
 
-
   const DESCTOP_CURRENT = 16;
   const DESCTOP_LOAD_MORE = 4;
 
@@ -55,7 +53,7 @@ function App() {
   const TABLET_LOAD_MORE = 2;
 
   const MOBILE_CURRENT = 5;
-  const MOBILE_LOAD_MORE = 1;
+  const MOBILE_LOAD_MORE = 2;
 
   useEffect(() => {
     api.getUserInfo()
@@ -112,6 +110,30 @@ function App() {
     }
   }, [loggedIn]);
 
+  useEffect(() => {
+    window.addEventListener("resize", resizeHandler);
+    resizeHandler();
+    return () => {
+      window.removeEventListener("resize", resizeHandler);
+    };
+  });
+
+  function resizeHandler() {
+    if (window.innerWidth <= 1280 && window.innerWidth > 1000) {
+      setMoreMovies(LAPTOP_LOAD_MORE);
+      setDefaultMovies(LAPTOP_CURRENT);
+    } else if (window.innerWidth <= 1000 && window.innerWidth > 767) {
+      setMoreMovies(TABLET_LOAD_MORE);
+      setDefaultMovies(TABLET_CURRENT);
+    } else if (window.innerWidth <= 767) {
+      setMoreMovies(MOBILE_LOAD_MORE);
+      setDefaultMovies(MOBILE_CURRENT);
+    } else if (window.innerWidth > 1280) {
+      setMoreMovies(DESCTOP_LOAD_MORE);
+      setDefaultMovies(DESCTOP_CURRENT);
+    }
+  };
+
   function handleRegistration(data) {
     auth
       .register(data.email, data.password, data.name)
@@ -165,7 +187,7 @@ function App() {
     currentPath.pathname === '/movies'
       ? setSearchedMovies(data)
       : setSearchedSavedMovies(data)
-    setCurrentMovies(12);
+    setCurrentMovies(defaultMovies);
   }
 
   function loadMoreMovies() {
@@ -203,22 +225,6 @@ function App() {
         console.log(err)
       });
   }
-
-  const resizeHandler = () => {
-    if (window.innerWidth < 1000) {
-      setIsMobile(true);
-    } else {
-      setIsMobile(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", resizeHandler);
-    resizeHandler();
-    return () => {
-      window.removeEventListener("resize", resizeHandler);
-    };
-  });
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
