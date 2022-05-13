@@ -112,7 +112,6 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       window.addEventListener("resize", resizeHandler);
-      console.log(window.innerWidth)
       resizeHandler()
     }, 500)
     return () => {
