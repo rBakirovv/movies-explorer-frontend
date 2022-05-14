@@ -151,6 +151,7 @@ function App() {
         navigate('/movies', { replace: true })
       })
       .catch((err) => {
+        setErrorData(err)
         console.log(err)
       });
   };
@@ -169,6 +170,7 @@ function App() {
         navigate('/movies', { replace: true })
       })
       .catch((err) => {
+        setErrorData(err)
         console.log(err)
       });
   };
@@ -251,6 +253,8 @@ function App() {
             <Route path='/signup'
               element={
                 <Register
+                  errorData={errorData}
+                  setErrorData={setErrorData}
                   handleRegistration={handleRegistration}
                 />}
             />
@@ -258,6 +262,8 @@ function App() {
               path='/signin'
               element={
                 <Login
+                  errorData={errorData}
+                  setErrorData={setErrorData}
                   handleAuthorization={handleAuthorization}
                 />}
             />

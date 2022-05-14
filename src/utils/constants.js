@@ -12,5 +12,5 @@ export const TABLET_LOAD_MORE = 2;
 export const MOBILE_CURRENT = 5;
 export const MOBILE_LOAD_MORE = 2;
 
-export const REGEX_NAME = /^[А-Яа-яa-zA-Z- ]+$/;
+export const REGEX_NAME = /^([А-Яа-яa-zA-Z- ]{2,30})$/;
 export const REGEX_EMAIL = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i;

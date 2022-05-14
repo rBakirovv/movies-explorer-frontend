@@ -50,12 +50,11 @@ function Profile(props) {
 
   function validateName() {
     if (!REGEX_NAME.test(String(name).toLowerCase())) {
-      setNameMessage('Имя неккоректно');
+      setNameMessage('Имя введено неккоректно');
       setIsNameValid(false);
       setIsDisabled(true);
     } else {
       setIsNameValid(true);
-
     }
   }
 

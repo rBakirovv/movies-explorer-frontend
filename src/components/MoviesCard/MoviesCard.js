@@ -22,8 +22,6 @@ function MoviesCard(props) {
   const cardHours = (parseInt(cardDuration / 60));
   const cardMinutes = cardDuration % 60;
 
-  const BASE_MOVIES_URL = 'https://api.nomoreparties.co/';
-
   isMovies && (
     useEffect(() => {
       savedMovies.map((movie) => {
