@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Main from '../Main/Main';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { CheckBoxSavedMoviesContext, CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { CheckBoxContext } from '../../contexts/CurrentUserContext';
 import NotFound from '../NotFound/NotFound';
 import Profile from '../Profile/Profile';
@@ -29,7 +29,9 @@ function App() {
 
   const [searchedMovies, setSearchedMovies] = useState('');
   const [searchedSavedMovies, setSearchedSavedMovies] = useState('');
+
   const [isShortMovie, setIsShortMovie] = useState(false);
+  const [isShortSavedMovie, setIsShortSavedMovie] = useState(false);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -104,6 +106,7 @@ function App() {
       moviesApi.getMovies()
         .then((movie) => {
           setMovies(movie);
+          setIsApiError(false);
         })
         .catch((err) => {
           console.log(err);
@@ -123,7 +126,7 @@ function App() {
   });
 
   function resizeHandler() {
-    if (window.innerWidth <= 1280 && window.innerWidth > 1000) {
+    if (window.innerWidth < 1280 && window.innerWidth > 1000) {
       setMoreMovies(LAPTOP_LOAD_MORE);
       setDefaultMovies(LAPTOP_CURRENT);
 
@@ -135,7 +138,7 @@ function App() {
       setMoreMovies(MOBILE_LOAD_MORE);
       setDefaultMovies(MOBILE_CURRENT);
 
-    } else if (window.innerWidth > 1280) {
+    } else if (window.innerWidth >= 1280) {
       setMoreMovies(DESCTOP_LOAD_MORE);
       setDefaultMovies(DESCTOP_CURRENT);
     }
@@ -236,69 +239,71 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <CheckBoxContext.Provider value={{ isShortMovie, setIsShortMovie }}>
-        <Routes>
-          <Route
-            path='/'
-            element={
-              <Main loggedIn={loggedIn}
-              />}
-          />
-          <Route path='/signup'
-            element={
-              <Register
-                handleRegistration={handleRegistration}
-              />}
-          />
-          <Route
-            path='/signin'
-            element={
-              <Login
-                handleAuthorization={handleAuthorization}
-              />}
-          />
-          <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
+        <CheckBoxSavedMoviesContext.Provider value={{ isShortSavedMovie, setIsShortSavedMovie }}>
+          <Routes>
             <Route
-              path='/movies'
+              path='/'
               element={
-                <Movies
-                  movies={movies}
-                  savedMovies={savedMovies}
-                  searchedMovies={searchedMovies}
-                  currentMovies={currentMovies}
-                  isLoading={isLoading}
-                  isApiError={isApiError}
-                  setCurrentMovies={setCurrentMovies}
-                  loadMoreMovies={loadMoreMovies}
-                  handleLikeMovie={handleLikeMovie}
-                  handleMovieDelete={handleMovieDelete}
-                  serachMovies={serachMovies}
+                <Main loggedIn={loggedIn}
+                />}
+            />
+            <Route path='/signup'
+              element={
+                <Register
+                  handleRegistration={handleRegistration}
                 />}
             />
             <Route
-              path='/saved-movies'
+              path='/signin'
               element={
-                <SavedMovies
-                  savedMovies={savedMovies}
-                  searchedMovies={searchedSavedMovies}
-                  isLoading={isLoading}
-                  serachMovies={serachMovies}
-                  handleMovieDelete={handleMovieDelete}
-                />
-              } />
-            <Route
-              path='/profile'
-              element={
-                <Profile
-                  isEditButton={isEditButton}
-                  isReadOnly={isReadOnly}
-                  handleLogOut={handleLogOut}
-                  handleEditProfile={handleEditProfile}
-                  handleEdiProfileClick={handleEdiProfileClick}
+                <Login
+                  handleAuthorization={handleAuthorization}
                 />}
             />
-          </Route>
-          <Route path='*' element={<NotFound />} />
-        </Routes>
+            <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
+              <Route
+                path='/movies'
+                element={
+                  <Movies
+                    movies={movies}
+                    savedMovies={savedMovies}
+                    searchedMovies={searchedMovies}
+                    currentMovies={currentMovies}
+                    isLoading={isLoading}
+                    isApiError={isApiError}
+                    setCurrentMovies={setCurrentMovies}
+                    loadMoreMovies={loadMoreMovies}
+                    handleLikeMovie={handleLikeMovie}
+                    handleMovieDelete={handleMovieDelete}
+                    serachMovies={serachMovies}
+                  />}
+              />
+              <Route
+                path='/saved-movies'
+                element={
+                  <SavedMovies
+                    savedMovies={savedMovies}
+                    searchedMovies={searchedSavedMovies}
+                    isLoading={isLoading}
+                    serachMovies={serachMovies}
+                    handleMovieDelete={handleMovieDelete}
+                  />
+                } />
+              <Route
+                path='/profile'
+                element={
+                  <Profile
+                    isEditButton={isEditButton}
+                    isReadOnly={isReadOnly}
+                    handleLogOut={handleLogOut}
+                    handleEditProfile={handleEditProfile}
+                    handleEdiProfileClick={handleEdiProfileClick}
+                  />}
+              />
+            </Route>
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+        </CheckBoxSavedMoviesContext.Provider>
       </CheckBoxContext.Provider>
     </CurrentUserContext.Provider>
   );

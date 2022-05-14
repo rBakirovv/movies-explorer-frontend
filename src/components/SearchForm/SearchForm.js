@@ -1,33 +1,48 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import './SearchForm.css';
 
 function SearchForm({ serachMovies }) {
 
   const [movie, setMovie] = useState('');
+  const [validationError, setValidationError] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (movie.length !== 0) {
+        setValidationError(false)
+      }
+    }, 500)
+  })
 
   function handleInputChange(e) {
     setMovie(e.target.value);
   };
 
-  const handleSubmit = (evt) => {
+  function handleSubmit(evt) {
     evt.preventDefault();
-    serachMovies(movie)
+    if (movie.length === 0) {
+      setValidationError(true);
+    } else {
+      serachMovies(movie);
+    }
   };
 
   return (
     <section className='search'>
-      <form className='search__form' onSubmit={handleSubmit}>
-        <div className='search__form-container'>
+      <form className='search__form' onSubmit={handleSubmit} noValidate>
+        <div className={`search__form-container ${validationError && 'search__form-container_error'}`}>
           <input
             type='search'
             className='search__input'
             placeholder='Фильм'
             required
-            formNoValidate
             onChange={handleInputChange} />
           <button type='submit' className='search__submit'>Найти</button>
         </div>
+        {validationError && (
+          <span className='search__input_error'>Нужно ввести ключевое слово</span>
+        )}
         <FilterCheckbox />
       </form>
     </section>
