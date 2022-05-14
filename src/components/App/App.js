@@ -14,6 +14,18 @@ import auth from '../../utils/Auth';
 import moviesApi from '../../utils/MoviesApi';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
+import {
+  BASE_MOVIES_URL,
+  DESCTOP_CURRENT,
+  DESCTOP_LOAD_MORE,
+  LAPTOP_CURRENT,
+  LAPTOP_LOAD_MORE,
+  TABLET_CURRENT,
+  TABLET_LOAD_MORE,
+  MOBILE_CURRENT,
+  MOBILE_LOAD_MORE,
+} from '../../utils/constants';
+
 function App() {
 
   const [currentUser, setCurrentUser] = useState({});
@@ -37,6 +49,8 @@ function App() {
 
   const [isApiError, setIsApiError] = useState(false);
 
+  const [errorData, setErrorData] = useState('');
+
   const [isEditButton, setIsEditButton] = useState(false);
 
   const [isReadOnly, setIsReadOnly] = useState(true);
@@ -44,20 +58,6 @@ function App() {
   const navigate = useNavigate();
 
   const currentPath = useLocation();
-
-  const BASE_MOVIES_URL = 'https://api.nomoreparties.co/';
-
-  const DESCTOP_CURRENT = 16;
-  const DESCTOP_LOAD_MORE = 4;
-
-  const LAPTOP_CURRENT = 12;
-  const LAPTOP_LOAD_MORE = 3;
-
-  const TABLET_CURRENT = 8;
-  const TABLET_LOAD_MORE = 2;
-
-  const MOBILE_CURRENT = 5;
-  const MOBILE_LOAD_MORE = 2;
 
   useEffect(() => {
     api.getUserInfo()
@@ -110,7 +110,6 @@ function App() {
         })
         .catch((err) => {
           console.log(err);
-          setIsApiError(true);
         })
     }
   }, [loggedIn]);
@@ -181,9 +180,11 @@ function App() {
           email: data.email,
           name: data.name,
         })
-        setIsEditButton(false)
+        setIsEditButton(false);
+        setErrorData('');
       })
       .catch((err) => {
+        setErrorData(err)
         console.log(err)
       });
   };
@@ -295,6 +296,10 @@ function App() {
                   <Profile
                     isEditButton={isEditButton}
                     isReadOnly={isReadOnly}
+                    errorData={errorData}
+                    setErrorData={setErrorData}
+                    setIsEditButton={setIsEditButton}
+                    setIsReadOnly={setIsReadOnly}
                     handleLogOut={handleLogOut}
                     handleEditProfile={handleEditProfile}
                     handleEdiProfileClick={handleEdiProfileClick}

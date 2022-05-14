@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { BASE_MOVIES_URL } from '../../utils/constants';
 import './MoviesCard.css';
 
 function MoviesCard(props) {
