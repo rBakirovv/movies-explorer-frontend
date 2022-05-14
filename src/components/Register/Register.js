@@ -117,6 +117,7 @@ function Register(props) {
             type='password'
             id='password'
             name='password'
+            minLength={2}
             onChange={handleChange}
             required />
           {

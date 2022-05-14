@@ -52,8 +52,6 @@ function Login(props) {
     setErrorData('');
   }, [data]);
 
-  console.log(isValid)
-
   return (
     <section className='login'>
       <div></div>
