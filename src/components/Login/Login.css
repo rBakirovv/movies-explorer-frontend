@@ -100,10 +100,6 @@
   cursor: default;
 }
 
-.login__submit:hover {
-  opacity: 0.8;
-}
-
 .login__submit-span {
   display: flex;
   font-family: 'Inter', Arial, sans-serif;
@@ -135,6 +131,12 @@
 
 .login__link:hover {
   opacity: 0.7;
+}
+
+@media(hover: hover) and (pointer: fine) {
+  .login__submit:hover {
+    opacity: 0.8;
+  }
 }
 
 @media screen and (max-width: 1000px) {

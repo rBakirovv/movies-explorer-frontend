@@ -4,7 +4,7 @@ import Header from '../Header/Header';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
-import { CheckBoxContext } from '../../contexts/CurrentUserContext';
+import { CheckBoxSavedMoviesContext } from '../../contexts/CurrentUserContext';
 import NotMatch from '../NotMatch/NotMatch';
 import Preloader from '../Preloader/Preloader';
 
@@ -18,11 +18,11 @@ function SavedMovies(props) {
     handleMovieDelete,
   } = props;
 
-  const { isShortMovie } = React.useContext(CheckBoxContext);
+  const { isShortSavedMovie } = React.useContext(CheckBoxSavedMoviesContext);
 
   const filtredMovies = savedMovies.filter((movie) => {
     return (
-      isShortMovie
+      isShortSavedMovie
         ? movie.nameRU.toLowerCase().includes(searchedMovies.toLowerCase()) && (movie.duration <= 40)
         : movie.nameRU.toLowerCase().includes(searchedMovies.toLowerCase())
     )
