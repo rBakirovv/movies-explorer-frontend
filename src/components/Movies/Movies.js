@@ -36,7 +36,10 @@ function Movies(props) {
   return (
     <>
       <Header loggedIn={true} />
-      <SearchForm serachMovies={serachMovies} />
+      <SearchForm
+        searchedMovies={searchedMovies}
+        serachMovies={serachMovies}
+      />
       {
         searchedMovies.length > 0 && filtredMovies.length === 0 && (
           <NotMatch />

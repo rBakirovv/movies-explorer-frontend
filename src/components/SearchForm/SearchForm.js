@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import './SearchForm.css';
 
-function SearchForm({ serachMovies }) {
+function SearchForm({ serachMovies, searchedMovies }) {
 
-  const [movie, setMovie] = useState('');
+  const [movie, setMovie] = useState(searchedMovies);
   const [validationError, setValidationError] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
-      if (movie.length !== 0) {
+      if (movie && movie.length !== 0) {
         setValidationError(false)
       }
     }, 500)
@@ -37,6 +37,7 @@ function SearchForm({ serachMovies }) {
             className='search__input'
             placeholder='Фильм'
             required
+            value={movie || ''}
             onChange={handleInputChange} />
           <button type='submit' className='search__submit'>Найти</button>
         </div>

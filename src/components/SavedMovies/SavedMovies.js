@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import MoviesCard from '../MoviesCard/MoviesCard';
@@ -16,6 +16,7 @@ function SavedMovies(props) {
     isLoading,
     serachMovies,
     handleMovieDelete,
+    setSearchedSavedMovies,
   } = props;
 
   const { isShortSavedMovie } = React.useContext(CheckBoxSavedMoviesContext);
@@ -27,6 +28,10 @@ function SavedMovies(props) {
         : movie.nameRU.toLowerCase().includes(searchedMovies.toLowerCase())
     )
   });
+
+  useEffect(() => {
+    setSearchedSavedMovies('');
+  }, []);
 
   return (
     <>

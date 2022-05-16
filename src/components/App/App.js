@@ -37,7 +37,7 @@ function App() {
 
   const [currentMovies, setCurrentMovies] = useState(0);
   const [defaultMovies, setDefaultMovies] = useState(0);
-  const [moreMovies, setMoreMovies] = useState(4);
+  const [moreMovies, setMoreMovies] = useState(0);
 
   const [searchedMovies, setSearchedMovies] = useState('');
   const [searchedSavedMovies, setSearchedSavedMovies] = useState('');
@@ -297,6 +297,7 @@ function App() {
                     isLoading={isLoading}
                     serachMovies={serachMovies}
                     handleMovieDelete={handleMovieDelete}
+                    setSearchedSavedMovies={setSearchedSavedMovies}
                   />
                 } />
               <Route
