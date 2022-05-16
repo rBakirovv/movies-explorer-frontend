@@ -10,7 +10,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   transition: visibility 0.25s, opacity 0.25s linear;
   visibility: hidden;
-  opacity:  0;
+  opacity: 0;
 }
 
 .navigation_active {
@@ -95,8 +95,10 @@
   .navigation__links-list {
     margin-top: 144px;
   }
+}
 
-  .navigation__account-link {
-    margin-bottom: 48px;
+@media screen and (max-height: 500px) {
+  .navigation__links-list {
+    margin-top: 60px;
   }
 }
