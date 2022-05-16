@@ -7,6 +7,7 @@ function MoviesCardList(props) {
     children,
     isMovies,
     isApiError,
+    isLoading,
     filtredMovies,
     searchedMovies,
     loadMoreMovies,
@@ -25,6 +26,7 @@ function MoviesCardList(props) {
         && filtredMovies.length > 0
         && searchedMovies.length > 0
         && filtredMovies.length > currentMovies
+        && !isLoading
         && (<button className='movies-cards-list__more-button' onClick={loadMoreMovies}>Ещё</button>)}
     </section>
   )

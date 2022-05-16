@@ -21,7 +21,7 @@ function SearchForm({ serachMovies, searchedMovies }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    if (movie.length === 0) {
+    if (movie === undefined || movie === '') {
       setValidationError(true);
     } else {
       serachMovies(movie);
@@ -42,7 +42,7 @@ function SearchForm({ serachMovies, searchedMovies }) {
           <button type='submit' className='search__submit'>Найти</button>
         </div>
         {validationError && (
-          <span className='search__input_error'>Нужно ввести ключевое слово</span>
+          <span className='search__input_error'>Введите ключевое слово.</span>
         )}
         <FilterCheckbox />
       </form>

@@ -205,6 +205,10 @@ function App() {
       ? setSearchedMovies(data)
       : setSearchedSavedMovies(data)
     setCurrentMovies(defaultMovies);
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 300);
   };
 
   function loadMoreMovies() {

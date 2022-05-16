@@ -38,13 +38,16 @@ function SavedMovies(props) {
       <Header loggedIn={true} />
       <SearchForm serachMovies={serachMovies} />
       {
-        searchedMovies.length > 0 && filtredMovies.length === 0 && (
+        searchedMovies.length > 0
+        && filtredMovies.length === 0
+        && !isLoading
+        && (
           <NotMatch />
         )
       }
       <Preloader isLoading={isLoading} />
-      <MoviesCardList>
-        {filtredMovies.map((movie) => {
+      <MoviesCardList isLoading={isLoading} >
+        {!isLoading && filtredMovies.map((movie) => {
           return (
             <MoviesCard
               key={movie._id}

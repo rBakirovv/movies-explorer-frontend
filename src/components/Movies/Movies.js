@@ -41,7 +41,10 @@ function Movies(props) {
         serachMovies={serachMovies}
       />
       {
-        searchedMovies.length > 0 && filtredMovies.length === 0 && (
+        searchedMovies.length > 0
+        && filtredMovies.length === 0
+        && !isLoading
+        && (
           <NotMatch />
         )
       }
@@ -49,25 +52,29 @@ function Movies(props) {
       <MoviesCardList
         isMovies={true}
         isApiError={isApiError}
+        isLoading={isLoading}
         filtredMovies={filtredMovies}
         loadMoreMovies={loadMoreMovies}
         searchedMovies={searchedMovies}
         currentMovies={currentMovies} >
-        {searchedMovies.length > 0 && (filtredMovies.slice(0, currentMovies).map((movie) => {
-          return (
-            <MoviesCard
-              key={movie.id}
-              cardId={movie.id}
-              cardNameRu={movie.nameRU}
-              cardDuration={movie.duration}
-              cardImage={movie.image.url}
-              cardTrailerLink={movie.trailerLink}
-              handleLikeMovie={handleLikeMovie}
-              handleMovieDelete={handleMovieDelete}
-              savedMovies={savedMovies}
-              isMovies={true} />
-          )
-        }))}
+        {
+          searchedMovies.length > 0
+          && !isLoading
+          && (filtredMovies.slice(0, currentMovies).map((movie) => {
+            return (
+              <MoviesCard
+                key={movie.id}
+                cardId={movie.id}
+                cardNameRu={movie.nameRU}
+                cardDuration={movie.duration}
+                cardImage={movie.image.url}
+                cardTrailerLink={movie.trailerLink}
+                handleLikeMovie={handleLikeMovie}
+                handleMovieDelete={handleMovieDelete}
+                savedMovies={savedMovies}
+                isMovies={true} />
+            )
+          }))}
       </MoviesCardList>
       <Footer />
     </>
