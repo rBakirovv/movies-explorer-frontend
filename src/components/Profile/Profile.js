@@ -44,7 +44,7 @@ function Profile(props) {
 
   const validateName = () => {
     if (!REGEX_NAME.test(String(name).toLowerCase())) {
-      setNameMessage('Имя может состоять только из русских или латинских символов.');
+      setNameMessage('Имя может состоять только из русских или латинских букв.');
       setIsNameValid(false);
       setIsDisabled(true);
       if (name.length < 2) {
@@ -63,9 +63,7 @@ function Profile(props) {
       setIsEmailValid(false);
       setIsDisabled(true);
       if (email && (email.length < 2)) {
-        setEmailMessage('Минимальная длина: 2 символа.');
-        setIsEmailValid(false);
-        setIsDisabled(true);
+        return setEmailMessage('Минимальная длина: 2 символа.');
       }
     } else {
       setIsEmailValid(true);

@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Register.css';
-import { REGEX_NAME } from '../../utils/constants';
+import { REGEX_EMAIL, REGEX_NAME } from '../../utils/constants';
 
 function Register(props) {
 
@@ -11,11 +11,16 @@ function Register(props) {
     errorData,
   } = props;
 
-  const [errors, setErrors] = useState({});
-  const [isValid, setIsValid] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const [isNameValid, setIsNameValid] = useState(true);
   const [nameMessage, setNameMessage] = useState('');
+
+  const [isEmailValid, setIsEmailValid] = useState(true);
+  const [emailMessage, setEmailMessage] = useState('');
+
+  const [isPasswordValid, setIsPasswordValid] = useState(true);
+  const [passwordMessage, setPasswordMessage] = useState('');
 
   const [data, setData] = useState({
     name: "",
@@ -24,42 +29,67 @@ function Register(props) {
   });
 
   useEffect(() => {
+    validateAll();
     validateName();
-  }, [data.name]);
+    validateEmail();
+    validatePassword();
+  }, [data.name, data.email, data.password]);
 
   function validateName() {
     if (data.name && !REGEX_NAME.test(String(data.name).toLowerCase())) {
-      setNameMessage('Имя введено неккоректно');
+      setNameMessage('Имя может состоять только из русских или латинских букв.');
       setIsNameValid(false);
-      setIsValid(false);
+      setIsDisabled(true);
+      if (data.name.length < 2) {
+        return setNameMessage('Минимальная длина: 2 символа.');
+      } else if (data.name.length > 30) {
+        return setNameMessage('Максимальная длина: 30 символов.');
+      }
     } else {
       setIsNameValid(true);
-    }
+    };
   }
 
-  const resetForm = useCallback(
-    (newData = {}, newErrors = {}, newIsValid = false) => {
-      setData(newData);
-      setErrors(newErrors);
-      setIsValid(newIsValid);
-    },
-    [setData, setErrors, setIsValid]
-  )
+  function validateEmail() {
+    if (data.email && !REGEX_EMAIL.test(String(data.email).toLowerCase())) {
+      setEmailMessage('E-mail должен содержать "@" и иметь разделяющую точку перед именем домена верхнего уровня.');
+      setIsEmailValid(false);
+      setIsDisabled(true);
+      if (data.email && (data.email.length < 2)) {
+        return setEmailMessage('Минимальная длина: 2 символа.');
+      }
+    } else {
+      setIsEmailValid(true);
+    };
+  };
+
+  function validatePassword() {
+    if (data.password && (data.password.length < 2)) {
+      setPasswordMessage('Минимальная длина: 2 символа.');
+      setIsPasswordValid(false);
+      setIsDisabled(true);
+    } else {
+      setIsPasswordValid(true);
+    };
+  };
+
+  function validateAll() {
+    if (isNameValid && isEmailValid && isPasswordValid) {
+      if (data.name.length != 0 && data.email.length != 0 && data.password.length > 1) {
+        setIsDisabled(false);
+      } else {
+        setIsDisabled(true);
+      }
+    };
+  };
 
   const handleChange = (evt) => {
-    const target = evt.target;
     const { name, value } = evt.target;
+
     setData({
       ...data,
       [name]: value
     });
-
-    setErrors({
-      ...errors,
-      [name]: target.validationMessage
-    });
-
-    setIsValid(target.closest('.register__form').checkValidity());
   };
 
   const handleSubmit = (evt) => {
@@ -98,22 +128,22 @@ function Register(props) {
         <label className='register__label' htmlFor='email'>
           E-mail
           <input
-            className={`register__input ${errors.email && 'register__input_error'}`}
+            className={`register__input ${!isEmailValid && 'register__input_error'}`}
             type='email'
             id='email'
             name='email'
             onChange={handleChange}
             required />
           {
-            errors.email && (
-              <span className='register__error'>{errors.email}</span>
+            !isEmailValid && (
+              <span className='register__error'>{emailMessage}</span>
             )
           }
         </label>
         <label className='register__label' htmlFor='email'>
           Пароль
           <input
-            className={`register__input ${errors.password && 'register__input_error'}`}
+            className={`register__input ${!isPasswordValid && 'register__input_error'}`}
             type='password'
             id='password'
             name='password'
@@ -121,8 +151,8 @@ function Register(props) {
             onChange={handleChange}
             required />
           {
-            errors.password && (
-              <span className='register__error'>{errors.password}</span>
+            !isPasswordValid && (
+              <span className='register__error'>{passwordMessage}</span>
             )
           }
         </label>
@@ -142,7 +172,7 @@ function Register(props) {
               <span className='register__submit-span'>На сервере произошла ошибка.</span>
             )
           }
-          <button type='submit' className={`register__submit ${!isValid && 'register__submit_disabled'}`} disabled={!isValid}>Зарегистрироваться</button>
+          <button type='submit' className={`register__submit ${isDisabled && 'register__submit_disabled'}`} disabled={isDisabled}>Зарегистрироваться</button>
           <p className='register__submit-subtitle'>Уже зарегистрированы? <Link to='/signin' className='login__link'>Войти</Link></p>
         </div>
       </form>

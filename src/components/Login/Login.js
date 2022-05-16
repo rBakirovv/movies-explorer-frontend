@@ -1,6 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Login.css'
+import './Login.css';
+import { REGEX_EMAIL } from '../../utils/constants';
 
 function Login(props) {
 
@@ -10,37 +11,65 @@ function Login(props) {
     errorData,
   } = props;
 
-  const [errors, setErrors] = useState({});
-  const [isValid, setIsValid] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  const [isEmailValid, setIsEmailValid] = useState(true);
+  const [emailMessage, setEmailMessage] = useState('');
+
+  const [isPasswordValid, setIsPasswordValid] = useState(true);
+  const [passwordMessage, setPasswordMessage] = useState('');
 
   const [data, setData] = useState({
     email: "",
     password: "",
   });
 
-  const resetForm = useCallback(
-    (newData = {}, newErrors = {}, newIsValid = false) => {
-      setData(newData);
-      setErrors(newErrors);
-      setIsValid(newIsValid);
-    },
-    [setData, setErrors, setIsValid]
-  )
+  useEffect(() => {
+    validateAll();
+    validateEmail();
+    validatePassword();
+  }, [data.name, data.email, data.password]);
+
+  function validateEmail() {
+    if (data.email && !REGEX_EMAIL.test(String(data.email).toLowerCase())) {
+      setEmailMessage('E-mail должен содержать "@" и иметь разделяющую точку перед именем домена верхнего уровня.');
+      setIsEmailValid(false);
+      setIsDisabled(true);
+      if (data.email && (data.email.length < 2)) {
+        return setEmailMessage('Минимальная длина: 2 символа.');
+      }
+    } else {
+      setIsEmailValid(true);
+    };
+  };
+
+  function validatePassword() {
+    if (data.password && (data.password.length < 2)) {
+      setPasswordMessage('Минимальная длина: 2 символа.');
+      setIsPasswordValid(false);
+      setIsDisabled(true);
+    } else {
+      setIsPasswordValid(true);
+    };
+  };
+
+  function validateAll() {
+    if (isPasswordValid && isEmailValid) {
+      if (data.email.length != 0 && data.password.length > 1) {
+        setIsDisabled(false);
+      } else {
+        setIsDisabled(true);
+      }
+    };
+  };
 
   const handleChange = (evt) => {
-    const target = evt.target;
     const { name, value } = evt.target;
+
     setData({
       ...data,
       [name]: value
     });
-
-    setErrors({
-      ...errors,
-      [name]: target.validationMessage
-    });
-
-    setIsValid(target.closest('.login__form').checkValidity());
   };
 
   const handleSubmit = (evt) => {
@@ -63,22 +92,22 @@ function Login(props) {
         <label className='login__label' htmlFor='email'>
           E-mail
           <input
-            className={`login__input ${errors.email && 'login__input_error'}`}
+            className={`login__input ${!isEmailValid && 'login__input_error'}`}
             type='email'
             id='email'
             name='email'
             onChange={handleChange}
             required />
           {
-            errors.email && (
-              <span className='login__error'>{errors.email}</span>
+            !isEmailValid && (
+              <span className='login__error'>{emailMessage}</span>
             )
           }
         </label>
         <label className='login__label' htmlFor='email'>
           Пароль
           <input
-            className={`login__input ${errors.password && 'login__input_error'}`}
+            className={`login__input ${!isPasswordValid && 'login__input_error'}`}
             type='password'
             id='password'
             name='password'
@@ -86,9 +115,9 @@ function Login(props) {
             onChange={handleChange}
             required />
           {
-            (
-              errors.password && (
-                <span className='login__error'>{errors.password}</span>
+            !isPasswordValid && (
+              (
+                <span className='login__error'>{passwordMessage}</span>
               )
             )
           }
@@ -104,7 +133,7 @@ function Login(props) {
               <span className='login__submit-span'>На сервере произошла ошибка.</span>
             )
           }
-          <button type='submit' className={`login__submit ${!isValid && 'login__submit_disabled'}`} disabled={!isValid}>Войти</button>
+          <button type='submit' className={`login__submit ${isDisabled && 'login__submit_disabled'}`} disabled={isDisabled}>Войти</button>
           <p className='login__submit-subtitle'>Ещё не зарегистрированы? <Link to='/signup' className='login__link'>Регистрация</Link></p>
         </div>
       </form>

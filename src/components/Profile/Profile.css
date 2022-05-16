@@ -91,6 +91,7 @@
 
 .profile__account-button:first-of-type {
   font-weight: 400;
+  color: #000;
 }
 
 .profile__account-button:last-of-type {
