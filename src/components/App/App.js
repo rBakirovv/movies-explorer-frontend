@@ -25,6 +25,7 @@ import {
   MOBILE_CURRENT,
   MOBILE_LOAD_MORE,
 } from '../../utils/constants';
+import ProtectedAuthRoute from '../../ProtectedAuthRoute/ProtectedAuthRoute';
 
 function App() {
 
@@ -253,23 +254,25 @@ function App() {
                 <Main loggedIn={loggedIn}
                 />}
             />
-            <Route path='/signup'
-              element={
-                <Register
-                  errorData={errorData}
-                  setErrorData={setErrorData}
-                  handleRegistration={handleRegistration}
-                />}
-            />
-            <Route
-              path='/signin'
-              element={
-                <Login
-                  errorData={errorData}
-                  setErrorData={setErrorData}
-                  handleAuthorization={handleAuthorization}
-                />}
-            />
+            <Route element={<ProtectedAuthRoute loggedIn={loggedIn} />}>
+              <Route path='/signup'
+                element={
+                  <Register
+                    errorData={errorData}
+                    setErrorData={setErrorData}
+                    handleRegistration={handleRegistration}
+                  />}
+              />
+              <Route
+                path='/signin'
+                element={
+                  <Login
+                    errorData={errorData}
+                    setErrorData={setErrorData}
+                    handleAuthorization={handleAuthorization}
+                  />}
+              />
+            </Route>
             <Route element={<ProtectedRoute loggedIn={loggedIn} />}>
               <Route
                 path='/movies'

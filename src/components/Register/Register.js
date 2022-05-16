@@ -75,7 +75,7 @@ function Register(props) {
 
   function validateAll() {
     if (isNameValid && isEmailValid && isPasswordValid) {
-      if (data.name.length != 0 && data.email.length != 0 && data.password.length > 1) {
+      if (data.name.length !== 0 && data.email.length !== 0 && data.password.length > 1) {
         setIsDisabled(false);
       } else {
         setIsDisabled(true);
