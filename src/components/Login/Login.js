@@ -28,7 +28,7 @@ function Login(props) {
     validateAll();
     validateEmail();
     validatePassword();
-  }, [data.name, data.email, data.password]);
+  }, [data.email, data.password]);
 
   function validateEmail() {
     if (data.email && !REGEX_EMAIL.test(String(data.email).toLowerCase())) {
@@ -55,7 +55,7 @@ function Login(props) {
 
   function validateAll() {
     if (isPasswordValid && isEmailValid) {
-      if (data.email.length != 0 && data.password.length > 1) {
+      if (data.email.length !== 0 && data.password.length > 1) {
         setIsDisabled(false);
       } else {
         setIsDisabled(true);

@@ -11,11 +11,13 @@ function Profile(props) {
     handleEditProfile,
     isEditButton,
     isReadOnly,
+    isSuccessChange,
     handleEdiProfileClick,
     errorData,
     setErrorData,
     setIsEditButton,
     setIsReadOnly,
+    setIsSuccessChange,
   } = props;
 
   const currentUser = React.useContext(CurrentUserContext);
@@ -38,6 +40,7 @@ function Profile(props) {
 
   useEffect(() => {
     setErrorData('');
+
     setIsReadOnly(true);
     setIsEditButton(false);
   }, [currentUser]);
@@ -99,6 +102,10 @@ function Profile(props) {
     validateEmail();
   }, [name, email]);
 
+  useEffect(() => {
+    setIsSuccessChange(false);
+  }, [])
+
   return (
     <>
       <Header loggedIn={true} />
@@ -132,6 +139,11 @@ function Profile(props) {
             !isEmailValid && (
               <span className='profile__input-span'>{emailMessage}</span>
             )
+          }
+          {
+            isSuccessChange
+            && errorData === ''
+            && (<span className='profile__success-span'>Ваши данные успешно обновлены.</span>)
           }
           {
             !isEditButton && (

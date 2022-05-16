@@ -51,6 +51,8 @@ function App() {
 
   const [errorData, setErrorData] = useState('');
 
+  const [isSuccessChange, setIsSuccessChange] = useState(false);
+
   const [isEditButton, setIsEditButton] = useState(false);
 
   const [isReadOnly, setIsReadOnly] = useState(true);
@@ -184,6 +186,7 @@ function App() {
         })
         setIsEditButton(false);
         setErrorData('');
+        setIsSuccessChange(true);
       })
       .catch((err) => {
         setErrorData(err)
@@ -302,10 +305,12 @@ function App() {
                   <Profile
                     isEditButton={isEditButton}
                     isReadOnly={isReadOnly}
+                    isSuccessChange={isSuccessChange}
                     errorData={errorData}
                     setErrorData={setErrorData}
                     setIsEditButton={setIsEditButton}
                     setIsReadOnly={setIsReadOnly}
+                    setIsSuccessChange={setIsSuccessChange}
                     handleLogOut={handleLogOut}
                     handleEditProfile={handleEditProfile}
                     handleEdiProfileClick={handleEdiProfileClick}
