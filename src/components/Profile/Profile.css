@@ -50,6 +50,7 @@
   font-size: 11px;
   line-height: 13px;
   color: #FF004C;
+  max-width: 414px;
 }
 
 .profile__label {
@@ -153,6 +154,10 @@
 
   .profile__buttons-container {
     margin-top: 190px;
+  }
+
+  .profile__input-span {
+    max-width: 264px;
   }
 }
 

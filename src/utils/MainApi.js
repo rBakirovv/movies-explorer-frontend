@@ -88,7 +88,7 @@ class MainApi {
 }
 
 const api = new MainApi({
-  baseUrl: 'https://api.bakirov.movies.nomoredomains.work',
+  baseUrl: 'http://localhost:3001',
   headers: {
     'Content-Type': 'application/json'
   }

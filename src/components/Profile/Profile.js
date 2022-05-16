@@ -42,33 +42,37 @@ function Profile(props) {
     setIsEditButton(false);
   }, [currentUser]);
 
-  useEffect(() => {
-    validateAll();
-    validateName();
-    validateEmail();
-  }, [email, name]);
-
-  function validateName() {
+  const validateName = () => {
     if (!REGEX_NAME.test(String(name).toLowerCase())) {
-      setNameMessage('Имя введено неккоректно');
+      setNameMessage('Имя может состоять только из русских или латинских символов.');
       setIsNameValid(false);
       setIsDisabled(true);
+      if (name.length < 2) {
+        return setNameMessage('Минимальная длина: 2 символа.');
+      } else if (name.length > 30) {
+        return setNameMessage('Максимальная длина: 30 символов.');
+      }
     } else {
       setIsNameValid(true);
     }
   }
 
-  function validateEmail() {
+  const validateEmail = () => {
     if (!REGEX_EMAIL.test(String(email).toLowerCase())) {
-      setEmailMessage('E-mail неккоректен');
+      setEmailMessage('E-mail должен содержать "@" и иметь разделяющую точку перед именем домена верхнего уровня.');
       setIsEmailValid(false);
       setIsDisabled(true);
+      if (email && (email.length < 2)) {
+        setEmailMessage('Минимальная длина: 2 символа.');
+        setIsEmailValid(false);
+        setIsDisabled(true);
+      }
     } else {
       setIsEmailValid(true);
     }
   };
 
-  function validateAll() {
+  const validateAll = () => {
     if (email === currentUser.email && name === currentUser.name) {
       setIsDisabled(true)
     } else if ((email !== currentUser.email) || (name !== currentUser.name)) {
@@ -90,6 +94,12 @@ function Profile(props) {
       name: name,
     });
   };
+
+  useEffect(() => {
+    validateAll();
+    validateName();
+    validateEmail();
+  }, [name, email]);
 
   return (
     <>

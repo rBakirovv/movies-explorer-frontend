@@ -19,8 +19,8 @@ function MoviesCard(props) {
   const [isLiked, setIsLiked] = useState(false);
   const [savedMovieId, setSavedMovieId] = useState('');
 
-  const cardHours = (parseInt(cardDuration / 60));
-  const cardMinutes = cardDuration % 60;
+  const MOVIE_HOURS = (parseInt(cardDuration / 60));
+  const MOVIE_MINUTES = cardDuration % 60;
 
   isMovies && (
     useEffect(() => {
@@ -91,7 +91,9 @@ function MoviesCard(props) {
       <div className='movies-card__main-container'>
         <div className='movies-card__info-container'>
           <h4 className='movies-card__title'>{cardNameRu}</h4>
-          <p className='movies-card__subtitle'>{cardHours > 0 && (`${cardHours}ч`)}{cardMinutes > 0 && (`${cardMinutes}м`)}</p>
+          <p className='movies-card__subtitle'>
+            {MOVIE_HOURS > 0 && (`${MOVIE_HOURS}ч`)}{MOVIE_MINUTES > 0 && (`${MOVIE_MINUTES}м`)}
+          </p>
         </div>
         {isMovies && (
           <button
