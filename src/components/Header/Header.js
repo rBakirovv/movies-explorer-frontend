@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import ReactDOM from 'react-dom';
@@ -9,6 +9,15 @@ function Header(props) {
   const { loggedIn } = props;
 
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
+
+  useEffect(() => {
+    const body = document.querySelector('body');
+    if (isBurgerOpen) {
+      body.style.overflow = 'hidden';
+    } else {
+      body.style.overflow = 'auto';
+    }
+  })
 
   return (
     <section className='header'>

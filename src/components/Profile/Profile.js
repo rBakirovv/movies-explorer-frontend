@@ -76,7 +76,7 @@ function Profile(props) {
   const validateAll = () => {
     if (email === currentUser.email && name === currentUser.name) {
       setIsDisabled(true)
-    } else if ((email !== currentUser.email) || (name !== currentUser.name)) {
+    } else {
       setIsDisabled(false)
     }
   }
