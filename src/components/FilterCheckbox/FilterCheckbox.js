@@ -11,13 +11,16 @@ function FilterCheckbox() {
   const currentPath = useLocation();
 
   function handleCheckbox() {
-    currentPath.pathname === '/movies'
-      ? setIsShortMovie(!isShortMovie)
-      : setIsShortSavedMovie(!isShortSavedMovie)
+    if (currentPath.pathname === '/movies') {
+      setIsShortMovie(!isShortMovie);
+      localStorage.setItem('isShortMovie', JSON.stringify(!isShortMovie));
+    } else {
+      setIsShortSavedMovie(!isShortSavedMovie);
+    }
   }
 
   return (
-    <div className='checkbox__container'>
+    <section className='checkbox__container'>
       <input
         className='checkbox__button'
         type='checkbox'
@@ -28,7 +31,7 @@ function FilterCheckbox() {
         }
         onChange={handleCheckbox} />
       <label className='checkbox__title'>Короткометражки</label>
-    </div>
+    </section>
   )
 }
 

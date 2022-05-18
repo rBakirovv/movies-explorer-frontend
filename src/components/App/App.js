@@ -25,7 +25,7 @@ import {
   MOBILE_CURRENT,
   MOBILE_LOAD_MORE,
 } from '../../utils/constants';
-import ProtectedAuthRoute from '../../ProtectedAuthRoute/ProtectedAuthRoute';
+import ProtectedAuthRoute from '../ProtectedAuthRoute/ProtectedAuthRoute';
 
 function App() {
 
@@ -36,14 +36,14 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
 
-  const [currentMovies, setCurrentMovies] = useState(0);
+  const [currentMovies, setCurrentMovies] = useState(JSON.parse(localStorage.getItem('currentMovies' || 0)));
   const [defaultMovies, setDefaultMovies] = useState(0);
   const [moreMovies, setMoreMovies] = useState(0);
 
-  const [searchedMovies, setSearchedMovies] = useState('');
+  const [searchedMovies, setSearchedMovies] = useState(JSON.parse(localStorage.getItem('searchedMovies' || '')));
   const [searchedSavedMovies, setSearchedSavedMovies] = useState('');
 
-  const [isShortMovie, setIsShortMovie] = useState(false);
+  const [isShortMovie, setIsShortMovie] = useState(JSON.parse(localStorage.getItem('isShortMovie' || false)));
   const [isShortSavedMovie, setIsShortSavedMovie] = useState(false);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -144,6 +144,7 @@ function App() {
       setMoreMovies(DESCTOP_LOAD_MORE);
       setDefaultMovies(DESCTOP_CURRENT);
     }
+    localStorage.setItem('currentMovies', JSON.stringify(defaultMovies));
   };
 
   function handleRegistration(data) {
@@ -162,6 +163,10 @@ function App() {
   function handleLogOut() {
     auth.logOut();
     setLoggedIn(false);
+    setIsShortMovie(false);
+    setSearchedMovies('');
+    localStorage.clear()
+
     navigate('/', { replace: true })
   };
 
@@ -201,9 +206,12 @@ function App() {
   };
 
   function serachMovies(data) {
-    currentPath.pathname === '/movies'
-      ? setSearchedMovies(data)
-      : setSearchedSavedMovies(data)
+    if (currentPath.pathname === '/movies') {
+      setSearchedMovies(data);
+      localStorage.setItem('searchedMovies', JSON.stringify(data));
+    } else {
+      setSearchedSavedMovies(data)
+    }
     setCurrentMovies(defaultMovies);
     setIsLoading(true);
     setTimeout(() => {

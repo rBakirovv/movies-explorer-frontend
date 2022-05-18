@@ -115,7 +115,7 @@ function Register(props) {
             className={`register__input ${!isNameValid && 'register__input_error'}`}
             type='name'
             id='name'
-            name='name'
+            name='name'a
             onChange={handleChange}
             required
           />

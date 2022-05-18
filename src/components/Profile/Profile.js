@@ -75,7 +75,9 @@ function Profile(props) {
 
   const validateAll = () => {
     if (email === currentUser.email && name === currentUser.name) {
-      setIsDisabled(true)
+      if (name && name.length > 1) {
+        setIsDisabled(true)
+      }
     } else {
       setIsDisabled(false)
     }
@@ -115,7 +117,7 @@ function Profile(props) {
           <label className={`profile__label ${!isNameValid && 'profile__label_error'}`} htmlFor='name'>Имя</label>
           <input
             className='profile__input'
-            value={name || ' '}
+            value={name || ''}
             type='text'
             name='name'
             id='name'
@@ -128,7 +130,7 @@ function Profile(props) {
           <label className={`profile__label ${!isEmailValid && 'profile__label_error'}`} htmlFor='email'>E-mail</label>
           <input
             className='profile__input'
-            value={email || ' '}
+            value={email || ''}
             type='email'
             name='email'
             readOnly={isReadOnly}

@@ -19,7 +19,7 @@ function SavedMovies(props) {
     setSearchedSavedMovies,
   } = props;
 
-  const { isShortSavedMovie } = React.useContext(CheckBoxSavedMoviesContext);
+  const { isShortSavedMovie, setIsShortSavedMovie } = React.useContext(CheckBoxSavedMoviesContext);
 
   const filtredMovies = savedMovies.filter((movie) => {
     return (
@@ -31,6 +31,7 @@ function SavedMovies(props) {
 
   useEffect(() => {
     setSearchedSavedMovies('');
+    setIsShortSavedMovie('');
   }, []);
 
   return (
