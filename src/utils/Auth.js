@@ -50,7 +50,7 @@ class Auth {
 }
 
 const auth = new Auth({
-  baseUrl: 'http://localhost:3001',
+  baseUrl: 'https://api.bakirov.movies.nomoredomains.work',
   headers: {
     'Content-Type': 'application/json'
   }
