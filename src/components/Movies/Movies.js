@@ -28,8 +28,8 @@ function Movies(props) {
   const filtredMovies = movies.filter((movie) => {
     return (
       isShortMovie
-        ? movie.nameRU.toLowerCase().includes(searchedMovies.toLowerCase()) && (movie.duration <= 40)
-        : movie.nameRU.toLowerCase().includes(searchedMovies.toLowerCase())
+        ? movie.nameRU.toLowerCase().includes(searchedMovies && searchedMovies.toLowerCase()) && (movie.duration <= 40)
+        : movie.nameRU.toLowerCase().includes(searchedMovies && searchedMovies.toLowerCase())
     )
   });
 
@@ -41,7 +41,8 @@ function Movies(props) {
         serachMovies={serachMovies}
       />
       {
-        searchedMovies.length > 0
+        searchedMovies
+        && searchedMovies.length > 0
         && filtredMovies.length === 0
         && !isLoading
         && (
@@ -58,7 +59,8 @@ function Movies(props) {
         searchedMovies={searchedMovies}
         currentMovies={currentMovies} >
         {
-          searchedMovies.length > 0
+          searchedMovies
+          && searchedMovies.length > 0
           && !isLoading
           && (filtredMovies.slice(0, currentMovies).map((movie) => {
             return (
