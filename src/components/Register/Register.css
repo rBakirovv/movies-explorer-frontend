@@ -46,7 +46,7 @@
   font-weight: 500;
   font-size: 13px;
   line-height: 16px;
-  width: 396px;
+  width: 376px;
   height: 46px;
   border: none;
   background: #F9F9F9;
@@ -71,6 +71,13 @@
   padding: 10px 0 0;
 }
 
+.register__auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 69px;
+}
+
 .register__submit {
   font-family: 'Inter', Arial, sans-serif;
   font-style: normal;
@@ -83,13 +90,14 @@
   color: #FFF;
   border: none;
   border-radius: 3px;
-  margin-top: 69px;
   cursor: pointer;
   transition: all 0.4s ease-in-out;
 }
 
-.register__submit:hover {
-  opacity: 0.8;
+.register__submit_disabled {
+  background: #F8F8F8;
+  color: #C2C2C2;
+  cursor: default;
 }
 
 .register__submit-subtitle {
@@ -111,6 +119,24 @@
 
 .register__link:hover {
   opacity: 0.7;
+}
+
+.register__submit-span {
+  display: flex;
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #FF4062;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+@media(hover: hover) and (pointer: fine) {
+  .register__submit:hover {
+    opacity: 0.8;
+  }
 }
 
 @media screen and (max-width: 1000px) {
@@ -135,12 +161,11 @@
   }
 
   .register__form {
-    margin: 80px auto 0;
-    max-width: 260px;
+    margin: 40px auto 0;
   }
 
   .register__input {
-    width: 260px;
+    width: 240px;
   }
 
   .register__auth-container {

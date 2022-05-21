@@ -1,11 +1,23 @@
-import React from 'react';
-import { Link, NavLink } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
-import './Header.css'
+import ReactDOM from 'react-dom';
+import './Header.css';
 
 function Header(props) {
 
   const { loggedIn } = props;
+
+  const [isBurgerOpen, setIsBurgerOpen] = useState(false);
+
+  useEffect(() => {
+    const body = document.querySelector('body');
+    if (isBurgerOpen) {
+      body.style.overflow = 'hidden';
+    } else {
+      body.style.overflow = 'auto';
+    }
+  })
 
   return (
     <section className='header'>
@@ -36,9 +48,12 @@ function Header(props) {
               Аккаунт
               <div className='header__logged-in-account-icon'></div>
             </Link>
-            <button className='header__burger'></button>
+            <button className='header__burger' onClick={() => setIsBurgerOpen(true)}></button>
           </div>
-          <Navigation />
+          {ReactDOM.createPortal(
+            <Navigation isBurgerOpen={isBurgerOpen} setIsBurgerOpen={setIsBurgerOpen} />,
+            document.getElementById('burger')
+          )}
         </>
       )}
     </section>

@@ -7,10 +7,11 @@ import Portfolio from '../Portfolio/Portfolio';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-function Main() {
+function Main({ loggedIn }) {
+
   return (
     <>
-      <Header />
+      <Header loggedIn={loggedIn} />
       <Promo />
       <AboutProject />
       <Techs />
